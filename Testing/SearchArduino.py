@@ -1,7 +1,7 @@
 import serial.tools.list_ports
-ports = list(serial.tools.list_ports.comports())
+ports = list(serial.tools.list_ports.comports()) #Find all the connected ports
 for p in ports:
-    print(p)
+    print(p) # Print all the ports
 
 '''
 import serial
@@ -18,4 +18,6 @@ if len(arduino_ports) > 1:
     print('Multiple Arduinos found - using the first')
 
 ser = serial.Serial(arduino_ports[0])
+
+##  /dev/cu.usbmodem141101 - IOUSBHostDevice
 '''
