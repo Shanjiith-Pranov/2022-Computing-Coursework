@@ -1,4 +1,3 @@
-from turtle import delay
 import pyautogui
 import time
 
