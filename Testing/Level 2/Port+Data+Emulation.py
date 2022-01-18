@@ -1,7 +1,6 @@
 import serial
 import serial.tools.list_ports
 import pyautogui
-import time
 
 keys = ['a', 'b', 'c', 'd'] # make this a changable variable later on when the mapping function is added
 pressedKey = ''
@@ -23,7 +22,7 @@ while True:
 
 while True:
     data = arduino.read() #Read the data received from the arduino
-    if data = '':
+    if data == '':
         pyautogui.keyUp(pressedKey)
         pressedKey = ''
     else:
