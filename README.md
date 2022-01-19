@@ -6,5 +6,7 @@
 
 ## Libraries used
 ### Python
-- pyserial
-- pyautogui
+- [pyserial](https://github.com/pyserial/pyserial)
+- [pyautogui](https://github.com/asweigart/pyautogui)
+- [tkinter](https://docs.python.org/3/library/tk.html) [Planned]
+- [pyfirmata](https://github.com/tino/pyFirmata) [Planned]
