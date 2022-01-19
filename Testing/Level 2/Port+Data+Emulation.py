@@ -20,7 +20,7 @@ while True:
     arduino = serial.Serial(arduino_ports[0]) #initialize connection with arduino
     break #Break out of the loop once the arduino is found
 
-while True:
+while True:  #### LOGIC TO BE TESTED
     data = arduino.read() #Read the data received from the arduino
     if data == '':
         pyautogui.keyUp(pressedKey)
