@@ -2,7 +2,7 @@ import serial
 import serial.tools.list_ports
 import pyautogui
 
-keys = ['a', 'b', 'c', 'd'] # make this a changable variable later on when the mapping function is added
+keys = ['w', 'a', 's', 'd'] # make this a changable variable later on when the mapping function is added
 pressedKey = ''
 
 while True:
