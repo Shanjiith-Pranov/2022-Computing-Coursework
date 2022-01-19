@@ -18,5 +18,6 @@ void loop()
   }else if (digitalRead(10) == HIGH){
     Serial.println("D");
   }else{
+      continue
   }
 }
