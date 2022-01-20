@@ -2,7 +2,9 @@ import serial
 import serial.tools.list_ports
 import pyautogui
 
-keys = ['w', 'a', 's', 'd'] # make this a changable variable later on when the mapping function is added
+keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right"] #The list of all possible keys
+selectedKeys = ["w","a","s","d"] # the keys that are currently selected, cuztomisable list
+
 pressedKey = ''
 
 while True:
@@ -17,11 +19,11 @@ while True:
         print('Multiple Arduinos found - using the first')
 
     print("Arduino found") # Arduino is found
-    arduino = serial.Serial(arduino_ports[0]) #initialize connection with arduino
+    arduino = serial.Serial(arduino_ports[0], 115200, timeout=.1) #initialize connection with arduino
     break #Break out of the loop once the arduino is found
 
 while True:  #### LOGIC TO BE TESTED
-    data = arduino.read() #Read the data received from the arduino
+    data = arduino.readline() #Read the data received from the arduino
     if data == '':
         pyautogui.keyUp(pressedKey)
         pressedKey = ''
@@ -31,3 +33,4 @@ while True:  #### LOGIC TO BE TESTED
                 pyautogui.keyUp(pressedKey)
                 pressedKey = data
             pyautogui.keyDown(pressedKey)
+    print(data)
