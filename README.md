@@ -10,3 +10,4 @@
 - [pyautogui](https://github.com/asweigart/pyautogui)
 - [tkinter](https://docs.python.org/3/library/tk.html) [Planned]
 - [pyfirmata](https://github.com/tino/pyFirmata) [Planned]
+- [py2app](https://github.com/ronaldoussoren/py2app) [Planned]
