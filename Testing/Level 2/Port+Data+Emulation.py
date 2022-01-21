@@ -26,7 +26,7 @@ placeholder,x = "",0
 
 while True:
     data = arduino.readline() #Read the data received from the arduino
-    newdata = data.split(" ")
+    newdata = (data.split(" ")).sort()
     newerdata = ""
 
     if data == '': pyautogui.keyUp(newerdata)
