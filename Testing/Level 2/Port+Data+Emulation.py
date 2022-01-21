@@ -22,15 +22,39 @@ while True:
     arduino = serial.Serial(arduino_ports[0], 115200, timeout=.1) #initialize connection with arduino
     break #Break out of the loop once the arduino is found
 
+placeholder,x = "",0
+
+while True:
+    data = arduino.readline() #Read the data received from the arduino
+    newdata = data.split(" ")
+    newerdata = ""
+
+    if data == '': pyautogui.keyUp(newerdata)
+        
+    else:
+      for i in range(len(newdata)):
+        newdata[i] = int(newdata[i])
+        newerdata += (selectedKeys[newdata[i]])
+      for i in range(len(newdata)):
+        if newdata[i] not in selectedKeys:
+          x = 1
+      if x == 1:
+        if data != placeholder: pyautogui.keyUp(newerdata)
+          
+      pyautogui.keyDown(newerdata)
+      placeholder = newerdata
+'''
 while True:  #### LOGIC TO BE TESTED
     data = arduino.readline() #Read the data received from the arduino
     if data == '':
         pyautogui.keyUp(pressedKey)
         pressedKey = ''
     else:
-        if data in keys:
+        if data in selectedKeys:
             if data != pressedKey:
+                placeholder = data.split(" ")
                 pyautogui.keyUp(pressedKey)
                 pressedKey = data
             pyautogui.keyDown(pressedKey)
     print(data)
+'''
