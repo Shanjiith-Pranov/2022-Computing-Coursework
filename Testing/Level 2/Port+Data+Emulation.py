@@ -39,10 +39,10 @@ while True:
         if newdata[i] not in selectedKeys:
           x = 1
       if x == 1:
-        if data != placeholder: pyautogui.keyUp(newerdata)
-          
-      pyautogui.keyDown(newerdata)
-      placeholder = newerdata
+        if data != placeholder: 
+            pyautogui.keyUp(newerdata)
+            pyautogui.keyDown(newerdata)
+            placeholder = newerdata
 '''
 while True:  #### LOGIC TO BE TESTED
     data = arduino.readline() #Read the data received from the arduino
