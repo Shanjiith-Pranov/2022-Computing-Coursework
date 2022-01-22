@@ -29,7 +29,7 @@ while True:
     newdata = (data.split(" ")).sort()
     newerdata = ""
 
-    if data == '': pyautogui.keyUp(placeholder)
+    if data == '' and placeholder is not "": pyautogui.keyUp(placeholder)
         
     else:
       for i in range(len(newdata)):
