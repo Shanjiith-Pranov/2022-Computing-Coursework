@@ -22,27 +22,26 @@ while True:
     arduino = serial.Serial(arduino_ports[0], 115200, timeout=.1) #initialize connection with arduino
     break #Break out of the loop once the arduino is found
 
-placeholder,x = "",0
+placeholder,check = "",0
 
 while True:
     data = arduino.readline() #Read the data received from the arduino
-    newdata = (data.split(" ")).sort()
+    newdata = (data.split(" ")).sort() #sorts data in ascending order, and splits each keypress into a list
     newerdata = ""
 
-    if data == '' and placeholder is not "": pyautogui.keyUp(placeholder)
-        
+    if data == "" and placeholder is not "": 
+        pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
     else:
       for i in range(len(newdata)):
-        newdata[i] = int(newdata[i])
-        newerdata += (selectedKeys[newdata[i]])
-      for i in range(len(newdata)):
-        if newdata[i] not in selectedKeys:
-          x = 1
-      if x == 1:
-        if data != placeholder: 
-            pyautogui.keyUp(newerdata)
-            pyautogui.keyDown(newerdata)
-            placeholder = newerdata
+        newdata[i] = int(newdata[i]) #converts every value into int
+        newerdata += (selectedKeys[newdata[i]]) #converts into keypress + appends into a string
+      for i in range(len(newerdata)):
+        if newerdata[i] not in selectedKeys: #check each value if it is the same as placeholder, check = 1 if different
+          check = 1
+      if check == 1: #if input is changed
+        pyautogui.keyUp(placeholder)
+        pyautogui.keyDown(newerdata)
+        placeholder = newerdata
 '''
 while True:  #### LOGIC TO BE TESTED
     data = arduino.readline() #Read the data received from the arduino
