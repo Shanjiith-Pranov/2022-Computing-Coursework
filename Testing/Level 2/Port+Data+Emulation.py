@@ -37,7 +37,6 @@ while True:
         pyautogui.keyDown(newdata) #keyup ssdddddif no input detected + if placeholder has a previous input
         print("down: " + newdata + "\n")
         placeholder = newdata
-
 '''dadd
 placeholder = ""
 newdata = []
