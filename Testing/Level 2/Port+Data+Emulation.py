@@ -23,25 +23,32 @@ while True:
     break #Break out of the loop once the arduino is found
 
 placeholder,check = "",0
+newdata = []
 
 while True:
     data = arduino.readline() #Read the data received from the arduino
-    newdata = (data.split(" ")).sort() #sorts data in ascending order, and splits each keypress into a list
-    newerdata = ""
+    newdata = data.split(" ") #sorts data in ascending order, and splits each keypress into a list
+    del newdata[-1]
+    if newdata != "":
+        newdata = [int(x) for x in newdata]
+    print(newdata)
+    # if newdata != None:
+    #     newdata = [int(x) for x in newdata]
+    # newerdata = ""
 
-    if data == "" and placeholder is not "": 
-        pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
-    else:
-      for i in range(len(newdata)):
-        newdata[i] = int(newdata[i]) #converts every value into int
-        newerdata += (selectedKeys[newdata[i]]) #converts into keypress + appends into a string
-      for i in range(len(newerdata)):
-        if newerdata[i] not in selectedKeys: #check each value if it is the same as placeholder, check = 1 if different
-          check = 1
-      if check == 1: #if input is changed
-        pyautogui.keyUp(placeholder)
-        pyautogui.keyDown(newerdata)
-        placeholder = newerdata
+    # if data == "" and placeholder is not "": 
+    #     pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
+    # else:
+    #   for i in range(len(newdata)):
+    #     newdata[i] = int(newdata[i]) #converts every value into int
+    #     newerdata += (selectedKeys[newdata[i]]) #converts into keypress + appends into a string
+    #   for i in range(len(newerdata)):
+    #     if newerdata[i] not in selectedKeys: #check each value if it is the same as placeholder, check = 1 if different
+    #       check = 1
+    #   if check == 1: #if input is changed
+    #     pyautogui.keyUp(placeholder)
+    #     pyautogui.keyDown(newerdata)
+    #     placeholder = newerdata
 '''
 while True:  #### LOGIC TO BE TESTED
     data = arduino.readline() #Read the data received from the arduino
