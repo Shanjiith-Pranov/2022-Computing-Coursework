@@ -23,40 +23,61 @@ while True:
     arduino = serial.Serial(arduino_ports[0], 115200, timeout=.1) #initialize connection with arduino
     break #Break out of the loop once the arduino is found
 
-placeholder,check = "",0
+placeholder = newdata = ""
+while True:
+    newdata = ""
+    data = (arduino.readline()).split(" ") #Read the data receiveda from the arduino
+    del data[-1]
+    for i in range(len(data)):
+        data[i] = int(data[i]) #converts every value into int
+        newdata = newdata + selectedKeys[data[i]] #converts into keypress + appends into a string
+    if placeholder != newdata:
+        pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
+        print("up: " + placeholder + "\n")
+        pyautogui.keyDown(newdata) #keyup ssdddddif no input detected + if placeholder has a previous input
+        print("down: " + newdata + "\n")
+        placeholder = newdata
+
+'''dadd
+placeholder = ""
 newdata = []
 time.sleep(5)   # Delays for 5 seconds. You can also use a float value.
 
 while True:
+    check = check0 = 0
     data = arduino.readline() #Read the data received from the arduino
+    #print(data)
+
     newdata = data.split(" ") #sorts data in ascending order, and splits each keypress into a list
     del newdata[-1]
     if newdata == [] or newdata == None:
-        print('nothing')
+        print("nothing sent")
+        check0 = 1
     else: 
         # newdata != [] or newdata != None:
-        print('something')
-        if newdata[0] == "\xff0":
-            newdata[0] = '0'
-        newdata = [int(x) for x in newdata]
+        if newdata[0] == "\xff0" or newdata[0] == "\xfc0":
+            newdata[0] = ''
+        #newdata = [int(x) for x in newdata]
     newerdata = ""
-    if data == "" and placeholder is not "": 
+    if check0 == 1 and placeholder is not "": 
         pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
         print("up: " + placeholder)
     else:
       for i in range(len(newdata)):
         newdata[i] = int(newdata[i]) #converts every value into int
-        newerdata += (selectedKeys[newdata[i]]) #converts into keypress + appends into a string
+        newerdata = newerdata + selectedKeys[newdata[i]] #converts into keypress + appends into a string
+
       for i in range(len(newerdata)):
         if newerdata[i] not in selectedKeys: #check each value if it is the same as placeholder, check = 1 if different
           check = 1
+
       if check == 1: #if input is changed
         pyautogui.keyUp(placeholder)
         print("up: " + placeholder)
         pyautogui.keyDown(newerdata)
         print("down: " + newerdata)
-        placeholder = newerdata
-'''
+    placeholder = newerdata
+
 while True:  #### LOGIC TO BE TESTED
     data = arduino.readline() #Read the data received from the arduino
     if data == '':
