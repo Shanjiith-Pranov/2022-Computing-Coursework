@@ -28,8 +28,7 @@ newdata = []
 time.sleep(5)   # Delays for 5 seconds. You can also use a float value.
 
 while True:
-    # data = arduino.readline() #Read the data received from the arduino
-    data = "\xff0 1 2 "
+    data = arduino.readline() #Read the data received from the arduino
     newdata = data.split(" ") #sorts data in ascending order, and splits each keypress into a list
     del newdata[-1]
     if newdata[0] == "":
@@ -39,23 +38,22 @@ while True:
             newdata[0] = '0'
         newdata = [int(x) for x in newdata]
     newerdata = ""
-
-    # if data == "" and placeholder is not "": 
-    #     pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
-    #     print("up: " + placeholder)
-    # else:
-    #   for i in range(len(newdata)):
-    #     newdata[i] = int(newdata[i]) #converts every value into int
-    #     newerdata += (selectedKeys[newdata[i]]) #converts into keypress + appends into a string
-    #   for i in range(len(newerdata)):
-    #     if newerdata[i] not in selectedKeys: #check each value if it is the same as placeholder, check = 1 if different
-    #       check = 1
-    #   if check == 1: #if input is changed
-    #     pyautogui.keyUp(placeholder)
-    #     print("up: " + placeholder)
-    #     pyautogui.keyDown(newerdata)
-    #     print("down: " + newerdata)
-    #     placeholder = newerdata
+    if data == "" and placeholder is not "": 
+        pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
+        print("up: " + placeholder)
+    else:
+      for i in range(len(newdata)):
+        newdata[i] = int(newdata[i]) #converts every value into int
+        newerdata += (selectedKeys[newdata[i]]) #converts into keypress + appends into a string
+      for i in range(len(newerdata)):
+        if newerdata[i] not in selectedKeys: #check each value if it is the same as placeholder, check = 1 if different
+          check = 1
+      if check == 1: #if input is changed
+        pyautogui.keyUp(placeholder)
+        print("up: " + placeholder)
+        pyautogui.keyDown(newerdata)
+        print("down: " + newerdata)
+        placeholder = newerdata
 '''
 while True:  #### LOGIC TO BE TESTED
     data = arduino.readline() #Read the data received from the arduino
