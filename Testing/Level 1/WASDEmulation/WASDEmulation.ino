@@ -5,7 +5,7 @@ void setup()
   Serial.begin(115200);
   pinMode(13, INPUT); //W
   pinMode(12, INPUT); //A
-  pinMode(13, INPUT); //S
+  pinMode(11, INPUT); //S
   pinMode(10, INPUT); //D
 }
 
