@@ -1,6 +1,7 @@
 import serial
 import serial.tools.list_ports
 import pyautogui
+import time
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right"] #The list of all possible keys
 selectedKeys = ["w","a","s","d"] # the keys that are currently selected, cuztomisable list
@@ -24,20 +25,24 @@ while True:
 
 placeholder,check = "",0
 newdata = []
+time.sleep(5)   # Delays for 5 seconds. You can also use a float value.
 
 while True:
-    data = arduino.readline() #Read the data received from the arduino
+    # data = arduino.readline() #Read the data received from the arduino
+    data = "\xff0 1 2 "
     newdata = data.split(" ") #sorts data in ascending order, and splits each keypress into a list
     del newdata[-1]
-    if newdata != "":
+    if newdata[0] == "":
+        del newdata[0]
+    if newdata != "" or newdata != None:
+        if newdata[0] == "\xff0":
+            newdata[0] = '0'
         newdata = [int(x) for x in newdata]
-    print(newdata)
-    # if newdata != None:
-    #     newdata = [int(x) for x in newdata]
-    # newerdata = ""
+    newerdata = ""
 
     # if data == "" and placeholder is not "": 
     #     pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
+    #     print("up: " + placeholder)
     # else:
     #   for i in range(len(newdata)):
     #     newdata[i] = int(newdata[i]) #converts every value into int
@@ -47,7 +52,9 @@ while True:
     #       check = 1
     #   if check == 1: #if input is changed
     #     pyautogui.keyUp(placeholder)
+    #     print("up: " + placeholder)
     #     pyautogui.keyDown(newerdata)
+    #     print("down: " + newerdata)
     #     placeholder = newerdata
 '''
 while True:  #### LOGIC TO BE TESTED
