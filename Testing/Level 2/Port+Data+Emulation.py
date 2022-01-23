@@ -31,9 +31,11 @@ while True:
     data = arduino.readline() #Read the data received from the arduino
     newdata = data.split(" ") #sorts data in ascending order, and splits each keypress into a list
     del newdata[-1]
-    if newdata[0] == "":
-        del newdata[0]
-    if newdata != "" or newdata != None:
+    if newdata == [] or newdata == None:
+        print('nothing')
+    else: 
+        # newdata != [] or newdata != None:
+        print('something')
         if newdata[0] == "\xff0":
             newdata[0] = '0'
         newdata = [int(x) for x in newdata]
