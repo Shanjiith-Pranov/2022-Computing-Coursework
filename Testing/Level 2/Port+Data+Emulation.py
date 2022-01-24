@@ -44,6 +44,6 @@ if arduinoFound:
             pyautogui.keyDown(newdata) #keyup ssdddddif no input detected + if placeholder has a previous input
             print("down: " + newdata + "\n")
             placeholder = newdata
-    else:
-        print("Arduino not found")
+else:
+    print("Arduino not found")
 
