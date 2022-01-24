@@ -25,29 +25,42 @@ def searchArduino(found,arduino):
             continue
         else:        
             if len(arduino_ports) > 1:
-                print('Multiple Arduinos found - using the first')
+                print('Multiple controllers found - using the first')
             else:
-                print("Arduino found") # Arduino is found
+                print("Controller found") # Arduino is found
             found = True
             arduino = serial.Serial(arduino_ports[0], 115200, timeout=.1) #initialize connection with arduino
             break #Break out of the loop once the arduino is found 
 
 def emulator(arduino):
-    while True:
-        newdata = ""
-        data = (arduino.readline()).split(" ") #Read the data receiveda from the arduino
-        del data[-1]
-        for i in range(len(data)):
-            data[i] = int(data[i]) #converts every value into int
-            newdata = newdata + selectedKeys[data[i]] #converts into keypress + appends into a string
-        if placeholder != newdata:
-            pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
-            print("up: " + placeholder + "\n")
-            pyautogui.keyDown(newdata) #keyup ssdddddif no input detected + if placeholder has a previous input
-            print("down: " + newdata + "\n")
-            placeholder = newdata
+    if arduinoFound:
+        while True:
+            newdata = ""
+            data = (arduino.readline()).split(" ") #Read the data receiveda from the arduino
+            del data[-1]
+            for i in range(len(data)):
+                data[i] = int(data[i]) #converts every value into int
+                newdata = newdata + selectedKeys[data[i]] #converts into keypress + appends into a string
+            if placeholder != newdata:
+                pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
+                print("up: " + placeholder + "\n")
+                pyautogui.keyDown(newdata) #keyup ssdddddif no input detected + if placeholder has a previous input
+                print("down: " + newdata + "\n")
+                placeholder = newdata
+    else:
+        print('''Controller not found. 
+        Common troubleshooting procedures:
+        - Unplug the controller and plug it back in
+        - Press the "Find controller" button''')
+    
+
+
+
+
+
 
 searchArduino(arduinoFound,arduino) 
+
 if arduinoFound:
     emulator(arduino)
 else:
