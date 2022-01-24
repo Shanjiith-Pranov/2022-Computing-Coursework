@@ -31,6 +31,8 @@ def searchArduino(found,arduino):
             found = True
             arduino = serial.Serial(arduino_ports[0], 115200, timeout=.1) #initialize connection with arduino
             break #Break out of the loop once the arduino is found 
+    if not arduinoFound:
+        print("Arduino not found")
 
 def emulator(arduino):
     if arduinoFound:
@@ -51,19 +53,20 @@ def emulator(arduino):
         print('''Controller not found. 
         Common troubleshooting procedures:
         - Unplug the controller and plug it back in
-        - Press the "Find controller" button''')
+        - Press the "Find controller" button
+''')
     
 
 
 
 
-
-
-searchArduino(arduinoFound,arduino) 
-
-if arduinoFound:
-    emulator(arduino)
-else:
-    print("Arduino not found")
+while True:
+    action = int(input("Enter selected action: "))
+    if action == 0:
+        searchArduino(arduinoFound,arduino)
+    elif action == 1:
+        emulator(arduino)
+    else:
+        break
 
 
