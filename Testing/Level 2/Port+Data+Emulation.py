@@ -1,4 +1,3 @@
-from tkinter import TRUE
 import serial
 import serial.tools.list_ports
 import pyautogui
