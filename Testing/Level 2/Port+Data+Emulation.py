@@ -9,27 +9,30 @@ selectedKeys = ["w","a","s","d"] # the keys that are currently selected, cuztomi
 pressedKey = ''
 arduinoFound = False
 placeholder = newdata = ""
+arduino = None
 
 
-t_end = time.time() + 10
-while time.time() < t_end:
-    arduino_ports = [ # Find all the ports with "IOUSBHostDevice" as its tag
-        p.device
-        for p in serial.tools.list_ports.comports()
-        if 'IOUSBHostDevice' in p.description   # IOUSBHostDevice is the arduino's tag or something, the serial value changes for each mac so we cannot search using that
-    ]
-    if not arduino_ports: #Loops until arduino is found
-        continue
-    else:        
-        if len(arduino_ports) > 1:
-            print('Multiple Arduinos found - using the first')
-        else:
-            print("Arduino found") # Arduino is found
-        arduinoFound = True
-        arduino = serial.Serial(arduino_ports[0], 115200, timeout=.1) #initialize connection with arduino
-        break #Break out of the loop once the arduino is found 
-   
-if arduinoFound:
+def searchArduino(found,arduino):
+    t_end = time.time() + 10
+    while time.time() < t_end:
+        arduino_ports = [ # Find all the ports with "IOUSBHostDevice" as its tag
+            p.device
+            for p in serial.tools.list_ports.comports()
+            if 'IOUSBHostDevice' in p.description   # IOUSBHostDevice is the arduino's tag or something, the serial value changes for each mac so we cannot search using that
+        ]
+        if not arduino_ports: #Loops until arduino is found
+            found = False
+            continue
+        else:        
+            if len(arduino_ports) > 1:
+                print('Multiple Arduinos found - using the first')
+            else:
+                print("Arduino found") # Arduino is found
+            found = True
+            arduino = serial.Serial(arduino_ports[0], 115200, timeout=.1) #initialize connection with arduino
+            break #Break out of the loop once the arduino is found 
+
+def emulator(arduino):
     while True:
         newdata = ""
         data = (arduino.readline()).split(" ") #Read the data receiveda from the arduino
@@ -43,6 +46,11 @@ if arduinoFound:
             pyautogui.keyDown(newdata) #keyup ssdddddif no input detected + if placeholder has a previous input
             print("down: " + newdata + "\n")
             placeholder = newdata
+
+searchArduino(arduinoFound,arduino) 
+if arduinoFound:
+    emulator(arduino)
 else:
     print("Arduino not found")
+
 
