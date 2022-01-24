@@ -1,6 +1,9 @@
 import tkinter as tk
 
-KEYS = ["w","a","s","d"]
+def sendKeys(keys): #This functions allows the sending of data to the other .py file
+    return keys
+
+KEYS = ["w","a","s","d"] #Make this cuztomisable
 window = tk.Tk()
 window.mainloop()
 
