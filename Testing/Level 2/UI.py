@@ -13,6 +13,8 @@ Button1 = tk.Entry()
 Button1.pack()
 Button1TRUE = Button1.get()
 
+### WHEN SAVE BUTTON IS PRESSED
+sendKeys(KEYS)
 
 '''
 from tkinter import *
