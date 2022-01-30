@@ -46,6 +46,7 @@ def emulator(arduino,placeholder,newdata):
                     pyautogui.keyDown(k) #keyup no input detected + if placeholder has a previous input
                     print("down: " + k + "\n")
                 placeholder = newdata
+                newdata = []
     else:
         print('''Controller connection not found. 
         Common troubleshooting procedures:
