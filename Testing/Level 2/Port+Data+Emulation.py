@@ -26,7 +26,7 @@ def searchArduino():
             if len(arduino_ports) > 1:
                 print('Multiple controllers found - using the first')
             else:
-                # print("Controller found.", end =" ") # Arduino is found
+                print("Controller found.", end =" ") # Arduino is found
                 return [True, serial.Serial(arduino_ports[0], 115200, timeout=.1)] #initialize connection with arduino
             break #Break out of the loop once the arduino is found 
     print("Arduino not found")
