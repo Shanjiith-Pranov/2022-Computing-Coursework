@@ -48,17 +48,6 @@ def emulator(arduino,placeholder,newdata):
                         pyautogui.keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
                     print("down: " + str(newdata) + "\n")
                     placeholder = newdata
-                # print(placeholder)
-                # print(newdata)
-                # print("change")
-                # for j in placeholder:
-                #     pyautogui.keyUp(j) #keyup if no input detected + if placeholder has a previous input
-                #     # print("up: " + j + "\n")
-                # for k in newdata:
-                #     pyautogui.keyDown(k) #keyup no input detected + if placeholder has a previous input
-                #     # print("down: " + k + "\n")
-                # placeholder = newdata
-                # newdata = []
     else:
         print('''Controller connection not found. 
         Common troubleshooting procedures:
