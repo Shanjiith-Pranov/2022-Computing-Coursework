@@ -33,20 +33,32 @@ def searchArduino():
 def emulator(arduino,placeholder,newdata):
     if arduino[0]:
         while True:
+            newdata=[]
             data = (arduino[1].readline()).split(" ") #Read the data receiveda from the arduino
             del data[-1]
             for i in range(len(data)):
                 data[i] = int(data[i]) #converts every value into int
                 newdata.append(selectedKeys[data[i]]) #converts into keypress + appends into a string
             if placeholder != newdata:
-                for j in placeholder:
-                    pyautogui.keyUp(j) #keyup if no input detected + if placeholder has a previous input
-                    print("up: " + j + "\n")
-                for k in newdata:
-                    pyautogui.keyDown(k) #keyup no input detected + if placeholder has a previous input
-                    print("down: " + k + "\n")
-                placeholder = newdata
-                newdata = []
+                if placeholder != newdata:
+                    for j in placeholder:
+                        pyautogui.keyUp(j) #keyup if no input detected + if placeholder has a previous input
+                    print("up: " + str(placeholder) + "\n")
+                    for k in newdata:
+                        pyautogui.keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
+                    print("down: " + str(newdata) + "\n")
+                    placeholder = newdata
+                # print(placeholder)
+                # print(newdata)
+                # print("change")
+                # for j in placeholder:
+                #     pyautogui.keyUp(j) #keyup if no input detected + if placeholder has a previous input
+                #     # print("up: " + j + "\n")
+                # for k in newdata:
+                #     pyautogui.keyDown(k) #keyup no input detected + if placeholder has a previous input
+                #     # print("down: " + k + "\n")
+                # placeholder = newdata
+                # newdata = []
     else:
         print('''Controller connection not found. 
         Common troubleshooting procedures:
