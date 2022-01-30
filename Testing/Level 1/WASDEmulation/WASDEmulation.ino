@@ -7,6 +7,7 @@ void setup()
   pinMode(11, INPUT); //A
   pinMode(10, INPUT); //S
   pinMode(9, INPUT); //D
+  pinMode(8, INPUT); //esc
 }
 
 void loop()
@@ -21,8 +22,11 @@ void loop()
   if (digitalRead(10) == LOW){
     pressedKeys = pressedKeys + "2 ";
   }
-  if (digitalRead(9) == HIGH){
+  if (digitalRead(9) == LOW){
     pressedKeys = pressedKeys + "3 ";
+  }
+  if (digitalRead(8) == LOW){
+    pressedKeys = pressedKeys + "4 ";
   }
   Serial.println(pressedKeys);
   pressedKeys = "";
