@@ -9,6 +9,7 @@ selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, c
 placeholder =''
 newdata = []
 arduino = [False,None]
+prevPressed = []
 
 
 def searchArduino():
@@ -30,7 +31,7 @@ def searchArduino():
             break #Break out of the loop once the arduino is found 
     print("Arduino not found")
 
-def emulator(arduino,placeholder,newdata):
+def emulator(arduino,placeholder,newdata,prevPressed):
     if arduino[0]:
         while True:
             newdata=[]
@@ -40,14 +41,20 @@ def emulator(arduino,placeholder,newdata):
                 data[i] = int(data[i]) #converts every value into int
                 newdata.append(selectedKeys[data[i]]) #converts into keypress + appends into a string
             if placeholder != newdata:
-                if placeholder != newdata:
-                    for j in placeholder:
+                print(newdata)
+                for j in placeholder:
+                    if j in newdata:
+                        pass
+                    else:
                         pyautogui.keyUp(j) #keyup if no input detected + if placeholder has a previous input
-                    print("up: " + str(placeholder) + "\n")
-                    for k in newdata:
+                print("up: " + str(placeholder) + "\n")
+                for k in newdata:
+                    if k in placeholder:
+                        pass
+                    else:
                         pyautogui.keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
-                    print("down: " + str(newdata) + "\n")
-                    placeholder = newdata
+                print("down: " + str(newdata) + "\n")
+                placeholder = newdata
     else:
         print('''Controller connection not found. 
         Common troubleshooting procedures:
@@ -70,7 +77,7 @@ while True:
             arduino[0] = False
         print("")
     elif action == 1:
-        emulator(arduino,placeholder,newdata)
+        emulator(arduino,placeholder,newdata,prevPressed)
     else:
         break
 
