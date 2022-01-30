@@ -7,7 +7,7 @@ keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r",
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
 
 placeholder =''
-newdata = ""
+newdata = []
 arduino = [False,None]
 
 
@@ -25,31 +25,33 @@ def searchArduino():
             if len(arduino_ports) > 1:
                 print('Multiple controllers found - using the first')
             else:
-                print("Controller found") # Arduino is found
-            return [True, serial.Serial(arduino_ports[0], 115200, timeout=.1)] #initialize connection with arduino
+                # print("Controller found.", end =" ") # Arduino is found
+                return [True, serial.Serial(arduino_ports[0], 115200, timeout=.1)] #initialize connection with arduino
             break #Break out of the loop once the arduino is found 
     print("Arduino not found")
 
 def emulator(arduino,placeholder,newdata):
     if arduino[0]:
         while True:
-            newdata = ""
             data = (arduino[1].readline()).split(" ") #Read the data receiveda from the arduino
             del data[-1]
             for i in range(len(data)):
                 data[i] = int(data[i]) #converts every value into int
-                newdata = newdata + selectedKeys[data[i]] #converts into keypress + appends into a string
+                newdata.append(selectedKeys[data[i]]) #converts into keypress + appends into a string
             if placeholder != newdata:
-                pyautogui.keyUp(placeholder) #keyup if no input detected + if placeholder has a previous input
-                print("up: " + placeholder + "\n")
-                pyautogui.keyDown(newdata) #keyup no input detected + if placeholder has a previous input
-                print("down: " + newdata + "\n")
+                for j in placeholder:
+                    pyautogui.keyUp(j) #keyup if no input detected + if placeholder has a previous input
+                    print("up: " + j + "\n")
+                for k in newdata:
+                    pyautogui.keyDown(k) #keyup no input detected + if placeholder has a previous input
+                    print("down: " + k + "\n")
                 placeholder = newdata
     else:
-        print('''Controller not found. 
+        print('''Controller connection not found. 
         Common troubleshooting procedures:
         - Unplug the controller and plug it back in
         - Press the "Find controller" button
+        - Close any other application that uses serial communication with the arduino in the controller
 ''')
     
 
@@ -59,8 +61,12 @@ def emulator(arduino,placeholder,newdata):
 while True:
     action = int(input("Enter selected action: "))
     if action == 0:
-        arduino = searchArduino()
-        print(arduino)
+        try:
+            arduino = searchArduino()
+        except Exception as exception:
+            print("However, that controller is being used by another application. Try closing any other application that uses serial communication with the arduino in the controller.")
+            arduino[0] = False
+        print("")
     elif action == 1:
         emulator(arduino,placeholder,newdata)
     else:
