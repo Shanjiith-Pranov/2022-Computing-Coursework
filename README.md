@@ -8,6 +8,6 @@
 ### Python
 - [pyserial](https://github.com/pyserial/pyserial)
 - [pyautogui](https://github.com/asweigart/pyautogui)
-- [tkinter](https://docs.python.org/3/library/tk.html) [Planned]
+- [tkinter](https://docs.python.org/3/library/tk.html)
 - [pyfirmata](https://github.com/tino/pyFirmata) [Planned]
 - [py2app](https://github.com/ronaldoussoren/py2app) [Planned]
