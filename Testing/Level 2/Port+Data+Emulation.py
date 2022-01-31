@@ -9,8 +9,6 @@ selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, c
 placeholder =''
 newdata = []
 arduino = [False,None]
-prevPressed = []
-
 
 def searchArduino():
     t_end = time.time() + 10
@@ -31,7 +29,7 @@ def searchArduino():
             break #Break out of the loop once the arduino is found 
     print("Arduino not found")
 
-def emulator(arduino,placeholder,newdata,prevPressed):
+def emulator(arduino,placeholder,newdata):
     if arduino[0]:
         while True:
             newdata=[]
@@ -62,10 +60,6 @@ def emulator(arduino,placeholder,newdata,prevPressed):
         - Press the "Find controller" button
         - Close any other application that uses serial communication with the arduino in the controller
 ''')
-    
-
-
-
 
 while True:
     action = int(input("Enter selected action: "))
@@ -77,8 +71,6 @@ while True:
             arduino[0] = False
         print("")
     elif action == 1:
-        emulator(arduino,placeholder,newdata,prevPressed)
+        emulator(arduino,placeholder,newdata)
     else:
         break
-
-
