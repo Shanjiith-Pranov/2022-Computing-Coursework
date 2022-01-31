@@ -2,7 +2,7 @@
 
 ## File levels
 ### Testing
-[Level 1](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/tree/main/Testing/Level%201) contains basic and simple features. [Level 2](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/tree/main/Testing/Level%202) contains more complex features and a combination of basic features.
+[Individual Features](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/tree/main/Testing/Individual%20features) contains basic and simple features. [Combined Features](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/tree/main/Testing/Conbined%20Features) contains more complex features and a combination of basic features. _(Duh.)_
 
 ## Libraries used
 ### Python
