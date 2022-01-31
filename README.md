@@ -8,7 +8,8 @@
 
 ## Libraries used
 ### Python
-- [pyserial](https://github.com/pyserial/pyserial) [_here_](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/search?l=Python&q=serial)
-- [pyautogui](https://github.com/asweigart/pyautogui) [_here_](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/search?l=Python&q=pyautogui)
-- [tkinter](https://docs.python.org/3/library/tk.html) [_here_](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/search?l=Python&q=tkinter)
+- [pyserial](https://github.com/pyserial/pyserial)
+- [pyautogui](https://github.com/asweigart/pyautogui)
+- [tkinter](https://docs.python.org/3/library/tk.html)
 - [py2app](https://github.com/ronaldoussoren/py2app)[Planned]
+
