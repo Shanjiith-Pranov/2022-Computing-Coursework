@@ -24,25 +24,51 @@ void setup()
 
 void loop()
 {
-  if (digitalRead(button1) == LOW){
+  if (digitalRead(button1) == HIGH){
     pressedKeys = pressedKeys + "0 ";
   }
-  if (digitalRead(button2) == LOW){
+  if (digitalRead(button2) == HIGH){
     pressedKeys = pressedKeys + "1 ";
   }
-  if (digitalRead(enable3) == LOW){
-    
-  }
-  if (digitalRead(button3) == LOW){
+  if (digitalRead(button3) == HIGH){
     pressedKeys = pressedKeys + "2 ";
   }
-  if (digitalRead(button4) == LOW){
+  if (digitalRead(button4) == HIGH){
     pressedKeys = pressedKeys + "3 ";
   }
-  if (digitalRead(button5) == LOW){
+  if (digitalRead(button5) == HIGH){
     pressedKeys = pressedKeys + "4 ";
   }
-  
+  if (digitalRead(enable1) == HIGH){
+    enable[0] = 1
+  }
+  else {
+    enable[0] = 0
+  }
+  if (digitalRead(enable2) == HIGH){
+    enable[1] = 1
+  }
+  else {
+    enable[1] = 0
+  }
+  if (digitalRead(enable3) == HIGH){
+    enable[2] = 1
+  }
+  else {
+    enable[2] = 0
+  }
+  if (digitalRead(enable4) == HIGH){
+    enable[3] = 1
+  }
+  else {
+    enable[3] = 0
+  }
+  if (digitalRead(enable5) == HIGH){
+    enable[4] = 1
+  }
+  else {
+    enable[4] = 0
+  }
 
   Serial.println(pressedKeys);
   pressedKeys = "";
