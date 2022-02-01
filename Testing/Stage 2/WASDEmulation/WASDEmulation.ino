@@ -72,6 +72,7 @@ void loop()
 
   Serial.println(pressedKeys);
   pressedKeys = "";
+  Serial.println(enable)
   delay(10);
 
 }
