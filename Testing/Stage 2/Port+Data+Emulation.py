@@ -35,6 +35,8 @@ def emulator(arduino,placeholder,newdata):
             newdata=[]
             data = (arduino[1].readline()).split(" ") #Read the data receiveda from the arduino
             del data[-1]
+            if newdata[0] == "\xff0":
+                newdata[0] = '0'
             for i in range(len(data)):
                 data[i] = int(data[i]) #converts every value into int
                 newdata.append(selectedKeys[data[i]]) #converts into keypress + appends into a string
