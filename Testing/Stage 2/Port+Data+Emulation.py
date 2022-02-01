@@ -33,13 +33,14 @@ def emulator(arduino,placeholder,newdata):
     if arduino[0]:
         while True:
             newdata=[]
-            data = (arduino[1].readline()).split(" ") #Read the data receiveda from the arduino
-            del data[-1]
+            pressedKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
+            enabledKeys = arduino[1].readline() #Read the data received from the arduino
+            del pressedKeys[-1]
             if newdata[0] == "\xff0":
                 newdata[0] = '0'
-            for i in range(len(data)):
-                data[i] = int(data[i]) #converts every value into int
-                newdata.append(selectedKeys[data[i]]) #converts into keypress + appends into a string
+            for i in range(len(pressedKeys)):
+                pressedKeys[i] = int(pressedKeys[i]) #converts every value into int
+                newdata.append(selectedKeys[pressedKeys[i]]) #converts into keypress + appends into a string
             if placeholder != newdata:
                 print(newdata)
                 for j in placeholder:
