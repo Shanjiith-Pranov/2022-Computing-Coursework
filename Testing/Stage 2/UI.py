@@ -8,19 +8,23 @@ root.title('Enter your Keys ')
 def open():
     top = tkinter.Toplevel() #Open New Window
     top.title("Syncing the Device")
+def show():
+    myLabel = tkinter.Label(root,text=clicked.get()).pack()
+clicked = tkinter.StringVar()
+clicked.set(selectedKeys[0])
 
 enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 # Dropdown window
 clicked1 = tkinter.StringVar()#Change to String
 clicked1.set('w') #Default Key1
 clicked2 = tkinter.StringVar()
-clicked2.set('w') #Default Key2
+clicked2.set('a') #Default Key2
 clicked3 = tkinter.StringVar()
-clicked3.set('w') #Default Key3
+clicked3.set('s') #Default Key3
 clicked4 = tkinter.StringVar()
-clicked4.set('w') #Default Key4
+clicked4.set('d') #Default Key4
 clicked5 = tkinter.StringVar()
-clicked5.set('w') #Default Key4
+clicked5.set('esc') #Default Key4
 
 WindowButton = tkinter.Button(root, text="Sync the Device",command=open) #Btn to open window
 WindowButton.grid(row=0,column=3)
@@ -51,6 +55,8 @@ drop5 = tkinter.OptionMenu(root,clicked5,*keys) #Drop Down Menu for button4
 drop5.grid(row=4,column=1)
 Label5 = tkinter.Label(root, text="Fifth Button") #Show what is button4
 Label5.grid(row=4,column=0)
+
+myButton =tkinter.Button(root,text ="Show selection", command = show)
 
 root.mainloop() #Loop forever/stay in window
 
