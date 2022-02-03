@@ -67,6 +67,9 @@ def emulator(arduino,placeholder,newdata,enabledKeys):
         - Close any other application that uses serial communication with the arduino in the controller
 ''')
 
+def sendEnable():
+    return enabledKeys
+
 while True:
     action = int(input("Enter selected action: "))
     if action == 0:
