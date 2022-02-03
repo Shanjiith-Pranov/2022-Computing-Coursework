@@ -19,6 +19,8 @@ clicked3 = tkinter.StringVar()
 clicked3.set('w') #Default Key3
 clicked4 = tkinter.StringVar()
 clicked4.set('w') #Default Key4
+clicked5 = tkinter.StringVar()
+clicked5.set('w') #Default Key4
 
 WindowButton = tkinter.Button(root, text="Sync the Device",command=open) #Btn to open window
 WindowButton.grid(row=0,column=3)
@@ -44,6 +46,11 @@ drop4 = tkinter.OptionMenu(root,clicked4,*keys) #Drop Down Menu for button4
 drop4.grid(row=3,column=1)
 Label4 = tkinter.Label(root, text="Fourth Button") #Show what is button4
 Label4.grid(row=3,column=0)
+
+drop5 = tkinter.OptionMenu(root,clicked5,*keys) #Drop Down Menu for button4
+drop5.grid(row=4,column=1)
+Label5 = tkinter.Label(root, text="Fifth Button") #Show what is button4
+Label5.grid(row=4,column=0)
 
 root.mainloop() #Loop forever/stay in window
 
