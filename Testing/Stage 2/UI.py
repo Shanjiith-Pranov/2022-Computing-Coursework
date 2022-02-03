@@ -4,7 +4,9 @@ keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r",
 selectedKeys = ["w","a","s","d"] # the keys that are currently selected, cuztomisable list
 root = tkinter.Tk()
 root.title('Enter your Keys ')
-
+def open():
+    top = tkinter.Toplevel() #Open New Window
+    top.title("Syncing the Device")
 
 
 # Dropdown window
@@ -16,6 +18,10 @@ clicked3 = tkinter.StringVar()
 clicked3.set('w') #Default Key3
 clicked4 = tkinter.StringVar()
 clicked4.set('w') #Default Key4
+
+WindowButton = tkinter.Button(root, text="Sync the Device",command=open) #Btn to open window
+WindowButton.grid(row=0,column=3)
+
 
 
 drop1 = tkinter.OptionMenu(root,clicked1,*keys) #Drop Down Menu for button1
