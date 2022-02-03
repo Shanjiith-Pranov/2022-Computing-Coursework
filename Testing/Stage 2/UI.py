@@ -1,6 +1,6 @@
 import tkinter 
 #import PortDataEmulation
-
+i = True
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right"] #The list of all possible keys
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
 root = tkinter.Tk()
@@ -9,9 +9,7 @@ def open():
     top = tkinter.Toplevel() #Open New Window
     top.title("Syncing the Device")
 def show():
-    myLabel = tkinter.Label(root,text=clicked.get()).pack()
-clicked = tkinter.StringVar()
-clicked.set(selectedKeys[0])
+    ChoiceLabel = tkinter.Label(root, text=selectedKeys).pack()
 
 #enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 # Dropdown window
@@ -56,9 +54,17 @@ drop5.grid(row=4,column=1)
 Label5 = tkinter.Label(root, text="Fifth Button") #Show what is button4
 Label5.grid(row=4,column=0)
 
-myButton =tkinter.Button(root,text ="Show selection", command = show)
-myButton.grid(row=5,column=0)
-
+ChoiceButton = tkinter.Button(root, text="Confirm selection",command=show) #Btn to set the selectedKeys
+ChoiceButton.grid(row=5,column=0)
+while i == True:
+    choice1 = clicked1.get()
+    choice2 = clicked2.get()
+    choice3 = clicked3.get()
+    choice4 = clicked4.get()
+    choice5 = clicked5.get()
+    print(choice1,choice2,choice3,choice4,choice5)
+    break
 
 root.mainloop() #Loop forever/stay in window
+
 
