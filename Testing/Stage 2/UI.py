@@ -1,5 +1,5 @@
 import tkinter 
-import PortDataEmulation
+#import PortDataEmulation
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right"] #The list of all possible keys
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
@@ -13,7 +13,7 @@ def show():
 clicked = tkinter.StringVar()
 clicked.set(selectedKeys[0])
 
-enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
+#enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 # Dropdown window
 clicked1 = tkinter.StringVar()#Change to String
 clicked1.set('w') #Default Key1
@@ -57,6 +57,8 @@ Label5 = tkinter.Label(root, text="Fifth Button") #Show what is button4
 Label5.grid(row=4,column=0)
 
 myButton =tkinter.Button(root,text ="Show selection", command = show)
+myButton.grid(row=5,column=0)
+
 
 root.mainloop() #Loop forever/stay in window
 
