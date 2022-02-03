@@ -9,7 +9,7 @@ def open():
     top = tkinter.Toplevel() #Open New Window
     top.title("Syncing the Device")
 
-enable = PortDataEmulation.sendEnable()
+enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 # Dropdown window
 clicked1 = tkinter.StringVar()#Change to String
 clicked1.set('w') #Default Key1
