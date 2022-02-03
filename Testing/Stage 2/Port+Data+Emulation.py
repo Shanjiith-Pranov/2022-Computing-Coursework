@@ -1,3 +1,4 @@
+from operator import index
 import serial
 import serial.tools.list_ports
 import pyautogui
@@ -36,8 +37,8 @@ def emulator(arduino,placeholder,newdata):
             pressedKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
             enabledKeys = arduino[1].readline() #Read the data received from the arduino
             del pressedKeys[-1]
-            if newdata[0] == "\xff0":
-                newdata[0] = '0'
+            if pressedKeys[0] == "\xff0":
+                pressedKeys[0] = '0'
             for i in range(len(pressedKeys)):
                 pressedKeys[i] = int(pressedKeys[i]) #converts every value into int
                 newdata.append(selectedKeys[pressedKeys[i]]) #converts into keypress + appends into a string
@@ -53,6 +54,7 @@ def emulator(arduino,placeholder,newdata):
                     if k in placeholder:
                         pass
                     else:
+                        if pressedKeys[new]
                         pyautogui.keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
                 print("down: " + str(newdata) + "\n")
                 placeholder = newdata
