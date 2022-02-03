@@ -1,5 +1,5 @@
 import tkinter 
-import Port\+Data\+Emulation
+import PortDataEmulation
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right"] #The list of all possible keys
 selectedKeys = ["w","a","s","d"] # the keys that are currently selected, cuztomisable list
@@ -9,7 +9,7 @@ def open():
     top = tkinter.Toplevel() #Open New Window
     top.title("Syncing the Device")
 
-
+enable = PortDataEmulation.sendEnable()
 # Dropdown window
 clicked1 = tkinter.StringVar()#Change to String
 clicked1.set('w') #Default Key1
