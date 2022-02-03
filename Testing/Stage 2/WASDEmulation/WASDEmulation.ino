@@ -9,7 +9,7 @@ int button4 = 10; // D
 int enable4 = 5;  // D   - Enable
 int button5 = 9;  // Esc
 int enable5 = 4;  // Esc - Enable
-int enable[] = {1, 1, 1, 1, 1};
+String enable;
 
 void setup()
 {
@@ -31,7 +31,7 @@ void loop()
 
   if (digitalRead(enable1) == HIGH)
   {
-    enable[0] = 1 ;
+    enable = enable + "1 ";
     if (digitalRead(button1) == HIGH)
     {
       pressedKeys = pressedKeys + "0 ";
@@ -39,11 +39,11 @@ void loop()
   }
   else
   {
-    enable[0] = 0
+    enable = enable + "0 ";
   }
   if (digitalRead(enable2) == HIGH)
   {
-    enable[1] = 1;
+    enable = enable + "1 ";
     if (digitalRead(button2) == HIGH)
     {
       pressedKeys = pressedKeys + "1 ";
@@ -51,7 +51,7 @@ void loop()
   }
   else
   {
-    enable[1] = 0
+    enable = enable + "0 ";
   }
   if (digitalRead(enable3) == HIGH)
   {
@@ -63,11 +63,11 @@ void loop()
   }
   else
   {
-    enable[2] = 0
+    enable = enable + "0 ";
   }
   if (digitalRead(enable4) == HIGH)
   {
-    enable[3] = 1;
+    enable = enable + "1 ";
     if (digitalRead(button4) == HIGH)
     {
       pressedKeys = pressedKeys + "3 ";
@@ -75,11 +75,11 @@ void loop()
   }
   else
   {
-    enable[3] = 0
+    enable = enable + "0 ";
   }
   if (digitalRead(enable5) == HIGH)
   {
-    enable[4] = 1;
+    enable = enable + "1 ";
     if (digitalRead(button5) == HIGH)
     {
       pressedKeys = pressedKeys + "4 ";
@@ -87,7 +87,7 @@ void loop()
   }
   else
   {
-    enable[4] = 0
+    enable = enable + "0 ";
   }
 
   Serial.println(pressedKeys);
