@@ -55,8 +55,8 @@ def emulator(arduino,placeholder,newdata,enabledKeys):
                     if k in placeholder:
                         pass
                     else:
-                        if pressedKeys[newdata]
-                        pyautogui.keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
+                        if pressedKeys[newdata]:
+                            pyautogui.keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
                 print("down: " + str(newdata) + "\n")
                 placeholder = newdata
     else:
