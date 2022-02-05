@@ -13,11 +13,11 @@ def open(): #opens window when syncing to arduino
 
 def show(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
-    selectedKeys[0] = clicked1.get() 
-    selectedKeys[1] = clicked2.get()
-    selectedKeys[2] = clicked3.get()
-    selectedKeys[3] = clicked4.get()
-    selectedKeys[4] = clicked5.get()
+    selectedKeys[0] = button1.get() 
+    selectedKeys[1] = button2.get()
+    selectedKeys[2] = button3.get()
+    selectedKeys[3] = button4.get()
+    selectedKeys[4] = button5.get()
     #updates the label every time Confirm Selection is pressed
     showChoices = tkinter.Label(root, text=selectedKeys) #shows all the currently selected keys
     showChoices.grid(row=4,column=3)
@@ -25,16 +25,16 @@ def show(): #updates the selected keys when Confirm Selection is pressed
 #enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 
 # Dropdown window
-clicked1 = tkinter.StringVar()#Change to String
-clicked1.set('w') #Default Key1
-clicked2 = tkinter.StringVar()
-clicked2.set('a') #Default Key2
-clicked3 = tkinter.StringVar()
-clicked3.set('s') #Default Key3
-clicked4 = tkinter.StringVar()
-clicked4.set('d') #Default Key4
-clicked5 = tkinter.StringVar()
-clicked5.set('esc') #Default Key4
+button1 = tkinter.StringVar()#Change to String
+button1.set('w') #Default Key1
+button2 = tkinter.StringVar()
+button2.set('a') #Default Key2
+button3 = tkinter.StringVar()
+button3.set('s') #Default Key3
+button4 = tkinter.StringVar()
+button4.set('d') #Default Key4
+button5 = tkinter.StringVar()
+button5.set('esc') #Default Key4
 
 windowButton = tkinter.Button(root, text="Sync the Device",command=open) #Btn to open window to sync to arduino
 windowButton.grid(row=0,column=3)
@@ -44,27 +44,27 @@ showChoices = tkinter.Label(root, text=selectedKeys) #shows all the currently se
 choiceLabel.grid(row=3,column=3)
 showChoices.grid(row=4,column=3)
 
-drop1 = tkinter.OptionMenu(root,clicked1,*keys) #Drop Down Menu for button1
+drop1 = tkinter.OptionMenu(root,button1,*keys) #Drop Down Menu for button1
 btnLabel1 = tkinter.Label(root, text="First Button") #Show what is button1
 drop1.grid(row=0,column=1)
 btnLabel1.grid(row=0,column=0)
 
-drop2 = tkinter.OptionMenu(root,clicked2,*keys) #Drop Down Menu for button2
+drop2 = tkinter.OptionMenu(root,button2,*keys) #Drop Down Menu for button2
 btnLabel2 = tkinter.Label(root, text="Second Button") #Show what is button2
 drop2.grid(row=1,column=1)
 btnLabel2.grid(row=1,column=0)
 
-drop3 = tkinter.OptionMenu(root,clicked3,*keys) #Drop Down Menu for button3
+drop3 = tkinter.OptionMenu(root,button3,*keys) #Drop Down Menu for button3
 btnLabel3 = tkinter.Label(root, text="Third Button") #Show what is button3
 drop3.grid(row=2,column=1)
 btnLabel3.grid(row=2,column=0)
 
-drop4 = tkinter.OptionMenu(root,clicked4,*keys) #Drop Down Menu for button4
+drop4 = tkinter.OptionMenu(root,button4,*keys) #Drop Down Menu for button4
 btnLabel4 = tkinter.Label(root, text="Fourth Button") #Show what is button4
 drop4.grid(row=3,column=1)
 btnLabel4.grid(row=3,column=0)
 
-drop5 = tkinter.OptionMenu(root,clicked5,*keys) #Drop Down Menu for button5
+drop5 = tkinter.OptionMenu(root,button5,*keys) #Drop Down Menu for button5
 btnLabel5 = tkinter.Label(root, text="Fifth Button") #Show what is button5
 drop5.grid(row=4,column=1)
 btnLabel5.grid(row=4,column=0)
