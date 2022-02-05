@@ -1,6 +1,6 @@
 import time
 import tkinter 
-import main #syncing with the arduino
+import main
 
 #enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 
@@ -13,13 +13,15 @@ root.title('Enter your Keys')
 def syncToArduino(): #opens window when syncing to arduino
     syncArduino = tkinter.Toplevel() #Open New Window
 
+    main.Search()
+
     syncArduino.title("Controller Status: Loading...")
     stateLabel = tkinter.Label(syncArduino, text="Controller Status: Loading...")
     stateLabel.grid(row=0,column=0)
-    time.sleep(10) #ERROR #sleep while loading
+    time.sleep(5) #ERROR #sleep while loading
     #states: 0 = not found, 1 = found, 2 = loading
     arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
-    state = int(arduino.read()) #fetching data from arduino.txt
+    state = int(arduino.readline()) #fetching data from arduino.txt
     arduino.close()
     #changing the outputs of different states
     if state == 0: #when no controller is found
@@ -36,6 +38,8 @@ def syncToArduino(): #opens window when syncing to arduino
 def startController():
     controller = tkinter.Toplevel() #Open New Window
     controller.title("Controller")
+
+    main.Start()
 
     start = tkinter.Button(controller, text="Start Controller",command=None) #Btn to start the controller
     stop = tkinter.Button(controller, text="Stop Controller",command=None) #Btn to stop the controller
