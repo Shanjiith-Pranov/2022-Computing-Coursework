@@ -39,17 +39,28 @@ def syncToArduino(): #opens window when syncing to arduino
 def startController():
     main.Start()
     status = ""
-
     arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
     state = int(arduino.readline()) #fetching data from arduino.txt
     arduino.close()
 
-    if state == 0: status = "Not Found"
-    elif state == 1: status = "Found"
+    if state == 0: 
+        syncArduino = tkinter.Toplevel() #Open New Window
+        status = "Not Found"
+        syncArduino.title("Controller Status: Not Found")
+        stateLabel = tkinter.Label(syncArduino, text="Controller Status: Not Found")
+        #troubleshooting tips
+        troubleshootLabel = tkinter.Label(syncArduino, text='Common troubleshooting procedures:\n- Unplug the controller and plug it back in\n- Press the "Find controller" button\n- Close any other application that uses serial communication with the arduino in the controller') #shows what showChoices means
+        troubleshootLabel.grid(row=1,column=0)
+    elif state == 1: 
+        status = "Found"
+        startControllerBtn = tkinter.Button(root, text="Stop Controller",command=startController) #Btn to open window to sync to arduino
     else: status = "Error"
 
     arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status: {status}") #shows current state of arduino
+
     arduinoSyncLbl.update()
+    stateLabel.update()
+    startControllerBtn.update()
 
 def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
