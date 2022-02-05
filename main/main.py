@@ -76,8 +76,7 @@ def emulator(arduino,placeholder,newdata,enabledKeys):
 def sendEnable():
     return enabledKeys
 
-while True:
-    action = int(input("Enter selected action: "))
+def search():
     if action == 0:
         try:
             arduino = searchArduino()
@@ -86,8 +85,8 @@ while True:
             ata.write("0")
             data.close()
             arduino[0] = False
-        print("")
-    elif action == 1:
-        emulator(arduino,placeholder,newdata,enabledKeys)
-    else:
-        break
+def Start():
+    emulator(arduino,placeholder,newdata,enabledKeys)
+def stop():
+    break
+    
