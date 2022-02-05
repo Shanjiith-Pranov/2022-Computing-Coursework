@@ -6,17 +6,22 @@ selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, c
 root = tkinter.Tk()
 root.title('Enter your Keys')
 
-def open(): #opens window when syncing to arduino
-    top = tkinter.Toplevel() #Open New Window
-    top.title("Syncing the Device")
+def syncToArduino(): #opens window when syncing to arduino
+    syncArduino = tkinter.Toplevel() #Open New Window
+    syncArduino.title("Syncing to the device...")
 
-def show(): #updates the selected keys when Confirm Selection is pressed
+def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
     selectedKeys[0] = button1.get() 
     selectedKeys[1] = button2.get()
     selectedKeys[2] = button3.get()
     selectedKeys[3] = button4.get()
     selectedKeys[4] = button5.get()
+    #Saves selectedKeys into a text file
+    data = open("keys.txt",'w')
+    for i in range(len(selectedKeys)): #splits selected keys up
+        data.write(selectedKeys[i] + " ")
+    data.close()
     #updates the label every time Confirm Selection is pressed
     showChoices = tkinter.Label(root, text=selectedKeys) #shows all the currently selected keys
     showChoices.grid(row=4,column=3)
@@ -35,7 +40,7 @@ button4.set('d') #Default Key4
 button5 = tkinter.StringVar()
 button5.set('esc') #Default Key4
 
-windowButton = tkinter.Button(root, text="Sync the Device",command=open) #Btn to open window to sync to arduino
+windowButton = tkinter.Button(root, text="Sync the Device",command=syncToArduino) #Btn to open window to sync to arduino
 windowButton.grid(row=0,column=3)
 
 choiceLabel = tkinter.Label(root, text="Selected keys:") #shows what showChoices means
@@ -68,7 +73,7 @@ btnLabel5 = tkinter.Label(root, text="Fifth Button") #Show what is button5
 drop5.grid(row=4,column=1)
 btnLabel5.grid(row=4,column=0)
 
-choiceButton = tkinter.Button(root, text="Confirm selection",command=show) #Btn to set the selectedKeys
+choiceButton = tkinter.Button(root, text="Confirm selection",command=getKeyInput) #Btn to set the selectedKeys
 choiceButton.grid(row=5,column=0)
 
 root.mainloop() #Loop forever/stay in window
