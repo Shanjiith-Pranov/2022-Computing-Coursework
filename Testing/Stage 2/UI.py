@@ -1,5 +1,5 @@
 import tkinter 
-#import PortDataEmulation
+#import PortDataEmulation #syncing with the arduino
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right"] #The list of all possible keys
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
@@ -7,21 +7,23 @@ selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, c
 root = tkinter.Tk()
 root.title('Enter your Keys')
 
-def open():
+def open(): #opens window when syncing to arduino
     top = tkinter.Toplevel() #Open New Window
     top.title("Syncing the Device")
 
-def show():
-    selectedKeys[0] = clicked1.get()
+def show(): #updates the selected keys when Confirm Selection is pressed
+    #updates the value of each key when Confirm Selection is pressed
+    selectedKeys[0] = clicked1.get() 
     selectedKeys[1] = clicked2.get()
     selectedKeys[2] = clicked3.get()
     selectedKeys[3] = clicked4.get()
     selectedKeys[4] = clicked5.get()
-
-    ChoiceLabel = tkinter.Label(root, text=selectedKeys)
+    #updates the label every time Confirm Selection is pressed
+    ChoiceLabel = tkinter.Label(root, text=selectedKeys) #shows all the currently selected keys
     ChoiceLabel.grid(row=4,column=3)
 
 #enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
+
 # Dropdown window
 clicked1 = tkinter.StringVar()#Change to String
 clicked1.set('w') #Default Key1
@@ -34,10 +36,10 @@ clicked4.set('d') #Default Key4
 clicked5 = tkinter.StringVar()
 clicked5.set('esc') #Default Key4
 
-WindowButton = tkinter.Button(root, text="Sync the Device",command=open) #Btn to open window
+WindowButton = tkinter.Button(root, text="Sync the Device",command=open) #Btn to open window to sync to arduino
 WindowButton.grid(row=0,column=3)
 
-ChoiceLabel = tkinter.Label(root, text=selectedKeys)
+ChoiceLabel = tkinter.Label(root, text=selectedKeys) #shows all the currently selected keys
 ChoiceLabel.grid(row=4,column=3)
 
 drop1 = tkinter.OptionMenu(root,clicked1,*keys) #Drop Down Menu for button1
