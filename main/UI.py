@@ -1,11 +1,11 @@
 import time
 import tkinter 
-import main #syncing with the arduino
+import main
 
 #enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right"] #The list of all possible keys
-selectedKeys = ["w","a","s","d","q"] # the keys that are currently selected, cuztomisable list
+selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
 
 root = tkinter.Tk() #Open New Window
 root.title('Enter your Keys')
@@ -13,18 +13,16 @@ root.title('Enter your Keys')
 def syncToArduino(): #opens window when syncing to arduino
     syncArduino = tkinter.Toplevel() #Open New Window
 
+    main.Search()
+
     syncArduino.title("Controller Status: Loading...")
     stateLabel = tkinter.Label(syncArduino, text="Controller Status: Loading...")
     stateLabel.grid(row=0,column=0)
-    #time.sleep(10) #ERROR #sleep while loading
+    time.sleep(5) #ERROR #sleep while loading
     #states: 0 = not found, 1 = found, 2 = loading
     arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
     state = int(arduino.readline()) #fetching data from arduino.txt
     arduino.close()
-
-    if state == 0: arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status = Not Connected") #shows current state of arduino
-    elif state == 1: arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status = Connected") #shows current state of arduino
-
     #changing the outputs of different states
     if state == 0: #when no controller is found
         syncArduino.title("Controller Status: Not Found")
@@ -35,24 +33,19 @@ def syncToArduino(): #opens window when syncing to arduino
     elif state == 1: #when controller is found
         syncArduino.title("Controller Status: Found!")
         stateLabel = tkinter.Label(syncArduino, text="Controller Status: Found!")
-
-    arduinoSyncLbl.grid(row=1,column=0,columnspan=2)
     stateLabel.grid(row=0,column=0)
 
 def startController():
-    arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
-    state = int(arduino.readline()) #fetching data from arduino.txt
-    arduino.close()
- 
-    if state == 0:
-        syncArduino = tkinter.Toplevel() #Open New Window
-        syncArduino.title("Controller Status: Not Found")
-        stateLabel = tkinter.Label(syncArduino, text="Controller Status: Not Found")
-        #troubleshooting tips
-        troubleshootLabel = tkinter.Label(syncArduino, text='Common troubleshooting procedures:\n- Unplug the controller and plug it back in\n- Press the "Find controller" button\n- Close any other application that uses serial communication with the arduino in the controller') #shows what showChoices means
-        troubleshootLabel.grid(row=1,column=0)
-        stateLabel.grid(row=0,column=0)
+    controller = tkinter.Toplevel() #Open New Window
+    controller.title("Controller")
 
+    main.Start()
+
+    start = tkinter.Button(controller, text="Start Controller",command=None) #Btn to start the controller
+    stop = tkinter.Button(controller, text="Stop Controller",command=None) #Btn to stop the controller
+
+    start.grid(row=0,column=0)    
+    stop.grid(row=0,column=1)
 
 def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
@@ -71,12 +64,14 @@ def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     showChoices.grid(row=7,column=1)
 
 # Dropdown window
+
 button1 = tkinter.StringVar()#Change to String
 button1.set('w') #Default Key1
 drop1 = tkinter.OptionMenu(root,button1,*keys) #Drop Down Menu for button1
 btnLabel1 = tkinter.Label(root, text="First Button") #Show what is button1
 btnLabel1.grid(row=2,column=0)
 drop1.grid(row=2,column=1)
+
 
 button2 = tkinter.StringVar()
 button2.set('a') #Default Key2
@@ -100,15 +95,15 @@ btnLabel4.grid(row=5,column=0)
 drop4.grid(row=5,column=1)
 
 button5 = tkinter.StringVar()
-button5.set('q') #Default Key4
+button5.set('esc') #Default Key4
 drop5 = tkinter.OptionMenu(root,button5,*keys) #Drop Down Menu for button5
 btnLabel5 = tkinter.Label(root, text="Fifth Button") #Show what is button5
 btnLabel5.grid(row=6,column=0)
 drop5.grid(row=6,column=1)
 
 arduinoSyncBtn = tkinter.Button(root, text="Sync the Device",command=syncToArduino) #Btn to open window to sync to arduino
-arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status = Not Connected") #shows current state of arduino
-arduinoSyncLbl.grid(row=1,column=0,columnspan=2)
+arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status: Not Found") #shows current state of arduino
+arduinoSyncLbl.grid(row=1,column=0)
 arduinoSyncBtn.grid(row=0,column=0)
 
 startControllerBtn = tkinter.Button(root, text="Start Controller",command=startController) #Btn to open window to sync to arduino
