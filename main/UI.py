@@ -41,7 +41,6 @@ def startController():
     start.grid(row=0,column=0)    
     stop.grid(row=0,column=1)
 
-
 def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
     selectedKeys[0] = button1.get() 
@@ -56,7 +55,7 @@ def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     data.close()
     #updates the label every time Confirm Selection is pressed
     showChoices = tkinter.Label(root, text=selectedKeys) #shows all the currently selected keys
-    showChoices.grid(row=4,column=3)
+    showChoices.grid(row=7,column=1)
 
 # Dropdown window
 
@@ -96,18 +95,21 @@ btnLabel5 = tkinter.Label(root, text="Fifth Button") #Show what is button5
 btnLabel5.grid(row=6,column=0)
 drop5.grid(row=6,column=1)
 
+placeholderStatus = 0
+
 arduinoSyncBtn = tkinter.Button(root, text="Sync the Device",command=syncToArduino) #Btn to open window to sync to arduino
+arduinoSyncLbl = tkinter.Label(root,text=f"Controller Startus: {placeholderStatus}")
+arduinoSyncLbl.grid(row=1,column=0)
 arduinoSyncBtn.grid(row=0,column=0)
 
 startControllerBtn = tkinter.Button(root, text="Start Controller",command=startController) #Btn to open window to sync to arduino
 startControllerBtn.grid(row=0,column=1)
 
 choicesLabel = tkinter.Label(root, text="Selected keys:") #shows what showChoices means
+choiceButton = tkinter.Button(root, text="Confirm selection",command=getKeyInput) #Btn to set the selectedKeys
 showChoices = tkinter.Label(root, text=selectedKeys) #shows all the currently selected keys
 choicesLabel.grid(row=7,column=0)
 showChoices.grid(row=7,column=1)
-
-choiceButton = tkinter.Button(root, text="Confirm selection",command=getKeyInput) #Btn to set the selectedKeys
 choiceButton.grid(row=8,column=0,columnspan=2)
 
 root.mainloop() #Loop forever/stay in window
