@@ -14,7 +14,8 @@ newdata = []
 arduino = [False,None]
 
 def searchArduino():
-    t_end = time() + 10
+    data = open("keys.txt",'w')
+    t_end = time() + 9
     while time() < t_end:
         arduino_ports = [ # Find all the ports with "IOUSBHostDevice" as its tag
             p.device
@@ -22,8 +23,12 @@ def searchArduino():
             if 'IOUSBHostDevice' in p.description   # IOUSBHostDevice is the arduino's tag or something, the serial value changes for each mac so we cannot search using that
         ]
         if not arduino_ports: #Loops until arduino is found
+            data.write("0")
+            data.close()
             continue
-        else:        
+        else:
+            data.write("1")
+            data.close()
             if len(arduino_ports) > 1:
                 print('Multiple controllers found - using the first')
             else:
