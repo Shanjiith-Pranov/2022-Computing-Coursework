@@ -1,3 +1,4 @@
+from logging import PlaceHolder
 import time
 import tkinter 
 import main
@@ -36,16 +37,18 @@ def syncToArduino(): #opens window when syncing to arduino
     stateLabel.grid(row=0,column=0)
 
 def startController():
-    controller = tkinter.Toplevel() #Open New Window
-    controller.title("Controller")
-
     main.Start()
+    status = ""
 
-    start = tkinter.Button(controller, text="Start Controller",command=None) #Btn to start the controller
-    stop = tkinter.Button(controller, text="Stop Controller",command=None) #Btn to stop the controller
+    arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
+    state = int(arduino.readline()) #fetching data from arduino.txt
+    arduino.close()
 
-    start.grid(row=0,column=0)    
-    stop.grid(row=0,column=1)
+    if state == 0: status = "Not Found"
+    elif state == 1: status = "Found"
+    else: status = "Error"
+
+    arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status: {status}") #shows current state of arduino
 
 def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
