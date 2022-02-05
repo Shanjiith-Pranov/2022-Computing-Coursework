@@ -16,9 +16,11 @@ def syncToArduino(): #opens window when syncing to arduino
     syncArduino.title("Controller Status: Loading...")
     stateLabel = tkinter.Label(syncArduino, text="Controller Status: Loading...")
     stateLabel.grid(row=0,column=0)
-    time.sleep(10) #sleep while loading
+    time.sleep(10) #ERROR #sleep while loading
     #states: 0 = not found, 1 = found, 2 = loading
-    state = 0 #to be changed
+    arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
+    state = int(arduino.read()) #fetching data from arduino.txt
+    arduino.close()
     #changing the outputs of different states
     if state == 0: #when no controller is found
         syncArduino.title("Controller Status: Not Found")
@@ -95,10 +97,10 @@ btnLabel5 = tkinter.Label(root, text="Fifth Button") #Show what is button5
 btnLabel5.grid(row=6,column=0)
 drop5.grid(row=6,column=1)
 
-placeholderStatus = 0
+placeholderStatus = 0 #DELETE LATER
 
 arduinoSyncBtn = tkinter.Button(root, text="Sync the Device",command=syncToArduino) #Btn to open window to sync to arduino
-arduinoSyncLbl = tkinter.Label(root,text=f"Controller Startus: {placeholderStatus}")
+arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status {placeholderStatus}")
 arduinoSyncLbl.grid(row=1,column=0)
 arduinoSyncBtn.grid(row=0,column=0)
 
