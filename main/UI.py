@@ -54,13 +54,13 @@ def startController():
     elif state == 1: 
         status = "Found"
         startControllerBtn = tkinter.Button(root, text="Stop Controller",command=startController) #Btn to open window to sync to arduino
+        startControllerBtn.update()
     else: status = "Error"
 
     arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status: {status}") #shows current state of arduino
 
     arduinoSyncLbl.update()
     stateLabel.update()
-    startControllerBtn.update()
 
 def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
@@ -118,7 +118,7 @@ drop5.grid(row=6,column=1)
 
 arduinoSyncBtn = tkinter.Button(root, text="Sync the Device",command=syncToArduino) #Btn to open window to sync to arduino
 arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status: Not Found") #shows current state of arduino
-arduinoSyncLbl.grid(row=1,column=0)
+arduinoSyncLbl.grid(row=1,column=0,columnspan=2)
 arduinoSyncBtn.grid(row=0,column=0)
 
 startControllerBtn = tkinter.Button(root, text="Start Controller",command=startController) #Btn to open window to sync to arduino
