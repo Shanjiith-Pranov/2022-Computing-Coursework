@@ -14,7 +14,7 @@ newdata = []
 arduino = [False,None]
 
 def searchArduino():
-    t_end = time() + 10
+    t_end = time() + 9
     while time() < t_end:
         arduino_ports = [ # Find all the ports with "IOUSBHostDevice" as its tag
             p.device
