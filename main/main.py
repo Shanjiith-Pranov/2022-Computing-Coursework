@@ -82,7 +82,9 @@ while True:
         try:
             arduino = searchArduino()
         except Exception as exception:
-            print("However, that controller is being used by another application. Try closing any other application that uses serial communication with the arduino in the controller.")
+            data = open("keys.txt",'w')
+            ata.write("0")
+            data.close()
             arduino[0] = False
         print("")
     elif action == 1:
