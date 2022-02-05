@@ -3,7 +3,6 @@ from serial.tools.list_ports import comports
 from pyautogui import keyDown
 from pyautogui import keyUp
 from time import time
-import UI
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right","esc"] #The list of all possible keys
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
@@ -13,9 +12,11 @@ placeholder =''
 newdata = []
 arduino = [False,None]
 
+def loadUI():
+    import UI
+
 def searchArduino():
-    data = open("keys.txt",'w')
-    t_end = time() + 9
+    t_end = time() + 5
     while time() < t_end:
         arduino_ports = [ # Find all the ports with "IOUSBHostDevice" as its tag
             p.device
@@ -23,17 +24,19 @@ def searchArduino():
             if 'IOUSBHostDevice' in p.description   # IOUSBHostDevice is the arduino's tag or something, the serial value changes for each mac so we cannot search using that
         ]
         if not arduino_ports: #Loops until arduino is found
+            data = open("arduino.txt",'w')
             data.write("0")
             data.close()
             continue
         else:
+            data = open("arduino.txt",'w')
             data.write("1")
             data.close()
             if len(arduino_ports) > 1:
                 print('Multiple controllers found - using the first')
             else:
                 print("Controller found.", end =" ") # Arduino is found
-                return [True, Serial(arduino_ports[0], 115200, timeout=.1)] #initialize connection with arduino
+                arduino = [True, Serial(arduino_ports[0], 115200, timeout=.1)] #initialize connection with arduino
             break #Break out of the loop once the arduino is found 
     print("Arduino not found")
 
@@ -73,20 +76,19 @@ def emulator(arduino,placeholder,newdata,enabledKeys):
         - Close any other application that uses serial communication with the arduino in the controller
 ''')
 
-def sendEnable():
+def SendEnable():
     return enabledKeys
 
-def search():
-    if action == 0:
-        try:
-            arduino = searchArduino()
-        except Exception as exception:
-            data = open("keys.txt",'w')
-            ata.write("0")
-            data.close()
-            arduino[0] = False
+def Search():
+    try:
+        searchArduino()
+    except Exception as exception:
+        data = open("arduino.txt",'w')
+        data.write("0")
+        data.close()
+        arduino[0] = False
 def Start():
     emulator(arduino,placeholder,newdata,enabledKeys)
-def stop():
-    break
+
+loadUI()
     
