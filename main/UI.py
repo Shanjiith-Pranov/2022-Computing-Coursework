@@ -1,6 +1,6 @@
 import time
 import tkinter 
-# import main #syncing with the arduino
+import main #syncing with the arduino
 
 #enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 
