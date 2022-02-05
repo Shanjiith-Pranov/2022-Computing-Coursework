@@ -1,3 +1,4 @@
+import time
 import tkinter 
 # import main #syncing with the arduino
 
@@ -11,21 +12,23 @@ root.title('Enter your Keys')
 
 def syncToArduino(): #opens window when syncing to arduino
     syncArduino = tkinter.Toplevel() #Open New Window
+
+    syncArduino.title("Controller Status: Loading...")
+    stateLabel = tkinter.Label(syncArduino, text="Controller Status: Loading...")
+    stateLabel.grid(row=0,column=0)
+    time.sleep(10) #sleep while loading
     #states: 0 = not found, 1 = found, 2 = loading
-    state = 0 #to be deleted
+    state = 0 #to be changed
     #changing the outputs of different states
     if state == 0: #when no controller is found
         syncArduino.title("Controller Status: Not Found")
         stateLabel = tkinter.Label(syncArduino, text="Controller Status: Not Found")
-        #troubleshooting tips
+        #troubleshooting tipsb
         troubleshootLabel = tkinter.Label(syncArduino, text='Common troubleshooting procedures:\n- Unplug the controller and plug it back in\n- Press the "Find controller" button\n- Close any other application that uses serial communication with the arduino in the controller') #shows what showChoices means
         troubleshootLabel.grid(row=1,column=0)
     elif state == 1: #when controller is found
         syncArduino.title("Controller Status: Found!")
         stateLabel = tkinter.Label(syncArduino, text="Controller Status: Found!")
-    elif state == 2: #when still looking for controller
-        syncArduino.title("Controller Status: Finding...")
-        stateLabel = tkinter.Label(syncArduino, text="Controller Status: Finding...")
     stateLabel.grid(row=0,column=0)
 
 def startController():
