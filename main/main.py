@@ -1,7 +1,8 @@
-import serial
-import serial.tools.list_ports
-import pyautogui
-import time
+from serial import Serial
+from serial.tools.list_ports import comports
+from pyautogui import keyDown
+from pyautogui import keyUp
+from time import time
 import UI
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right","esc"] #The list of all possible keys
@@ -13,11 +14,11 @@ newdata = []
 arduino = [False,None]
 
 def searchArduino():
-    t_end = time.time() + 10
-    while time.time() < t_end:
+    t_end = time() + 10
+    while time() < t_end:
         arduino_ports = [ # Find all the ports with "IOUSBHostDevice" as its tag
             p.device
-            for p in serial.tools.list_ports.comports()
+            for p in comports()
             if 'IOUSBHostDevice' in p.description   # IOUSBHostDevice is the arduino's tag or something, the serial value changes for each mac so we cannot search using that
         ]
         if not arduino_ports: #Loops until arduino is found
@@ -27,7 +28,7 @@ def searchArduino():
                 print('Multiple controllers found - using the first')
             else:
                 print("Controller found.", end =" ") # Arduino is found
-                return [True, serial.Serial(arduino_ports[0], 115200, timeout=.1)] #initialize connection with arduino
+                return [True, Serial(arduino_ports[0], 115200, timeout=.1)] #initialize connection with arduino
             break #Break out of the loop once the arduino is found 
     print("Arduino not found")
 
@@ -49,14 +50,14 @@ def emulator(arduino,placeholder,newdata,enabledKeys):
                     if j in newdata:
                         pass
                     else:
-                        pyautogui.keyUp(j) #keyup if no input detected + if placeholder has a previous input
+                        keyUp(j) #keyup if no input detected + if placeholder has a previous input
                 print("up: " + str(placeholder) + "\n")
                 for k in newdata:
                     if k in placeholder:
                         pass
                     else:
                         if pressedKeys[newdata]:
-                            pyautogui.keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
+                            keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
                 print("down: " + str(newdata) + "\n")
                 placeholder = newdata
     else:
