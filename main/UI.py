@@ -49,6 +49,7 @@ def startController():
     else: status = "Error"
 
     arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status: {status}") #shows current state of arduino
+    arduinoSyncLbl.update()
 
 def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
