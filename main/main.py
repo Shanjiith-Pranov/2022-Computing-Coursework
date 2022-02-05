@@ -1,11 +1,9 @@
 from serial import Serial
 from serial.tools.list_ports import comports
-import pyautogui
+from pyautogui import keyDown
+from pyautogui import keyUp
 from time import time
 import UI
-import sys
-print(sys.version)
-print(sys.path)
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right","esc"] #The list of all possible keys
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
@@ -52,14 +50,14 @@ def emulator(arduino,placeholder,newdata,enabledKeys):
                     if j in newdata:
                         pass
                     else:
-                        pyautogui.keyUp(j) #keyup if no input detected + if placeholder has a previous input
+                        keyUp(j) #keyup if no input detected + if placeholder has a previous input
                 print("up: " + str(placeholder) + "\n")
                 for k in newdata:
                     if k in placeholder:
                         pass
                     else:
                         if pressedKeys[newdata]:
-                            pyautogui.keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
+                            keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
                 print("down: " + str(newdata) + "\n")
                 placeholder = newdata
     else:
