@@ -15,7 +15,7 @@ def loadUI():
     import UI
 
 def searchArduino():
-    t_end = time() + 5
+    t_end = time() + 9
     while time() < t_end:
         arduino_ports = [ # Find all the ports with "IOUSBHostDevice" as its tag
             p.device

@@ -1,4 +1,4 @@
-import time
+from time import sleep
 import tkinter 
 import main
 
@@ -18,7 +18,7 @@ def syncToArduino(): #opens window when syncing to arduino
 
     syncArduino.title("Controller Status: Loading...")
 
-    time.sleep(5) #sleep while loading
+    sleep(1) #sleep while loading
     #states: 0 = not found, 1 = found, 2 = loading
     arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
     state = int(arduino.readline()) #fetching data from arduino.txt
