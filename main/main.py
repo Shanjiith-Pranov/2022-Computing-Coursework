@@ -11,6 +11,7 @@ enabledKeys = []
 placeholder =''
 newdata = []
 arduino = [False,None]
+startstop = 0
 
 def loadUI():
     import UI
@@ -40,41 +41,44 @@ def searchArduino():
             break #Break out of the loop once the arduino is found 
     print("Arduino not found")
 
-def emulator(arduino,placeholder,newdata,enabledKeys):
-    if arduino[0]:
-        while True:
-            newdata=[]
-            pressedKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
-            enabledKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
-            del pressedKeys[-1]
-            if pressedKeys[0] == "\xff0":
-                pressedKeys[0] = '0'
-            for i in range(len(pressedKeys)):
-                pressedKeys[i] = int(pressedKeys[i]) #converts every value into int
-                newdata.append(selectedKeys[pressedKeys[i]]) #converts into keypress + appends into a string
-            if placeholder != newdata:
-                print(newdata)
-                for j in placeholder:
-                    if j in newdata:
-                        pass
-                    else:
-                        keyUp(j) #keyup if no input detected + if placeholder has a previous input
-                print("up: " + str(placeholder) + "\n")
-                for k in newdata:
-                    if k in placeholder:
-                        pass
-                    else:
-                        if pressedKeys[newdata]:
-                            keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
-                print("down: " + str(newdata) + "\n")
-                placeholder = newdata
+def emulator():
+    if startstop == 1:
+        if arduino[0]:
+            while True:
+                newdata=[]
+                pressedKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
+                enabledKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
+                del pressedKeys[-1]
+                if pressedKeys[0] == "\xff0":
+                    pressedKeys[0] = '0'
+                for i in range(len(pressedKeys)):
+                    pressedKeys[i] = int(pressedKeys[i]) #converts every value into int
+                    newdata.append(selectedKeys[pressedKeys[i]]) #converts into keypress + appends into a string
+                if placeholder != newdata:
+                    print(newdata)
+                    for j in placeholder:
+                        if j in newdata:
+                            pass
+                        else:
+                            keyUp(j) #keyup if no input detected + if placeholder has a previous input
+                    print("up: " + str(placeholder) + "\n")
+                    for k in newdata:
+                        if k in placeholder:
+                            pass
+                        else:
+                            if pressedKeys[newdata]:
+                                keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
+                    print("down: " + str(newdata) + "\n")
+                    placeholder = newdata
+        else:
+            print('''Controller connection not found. 
+            Common troubleshooting procedures:
+            - Unplug the controller and plug it back in
+            - Press the "Find controller" button
+            - Close any other application that uses serial communication with the arduino in the controller
+    ''')
     else:
-        print('''Controller connection not found. 
-        Common troubleshooting procedures:
-        - Unplug the controller and plug it back in
-        - Press the "Find controller" button
-        - Close any other application that uses serial communication with the arduino in the controller
-''')
+        pass
 
 def SendEnable():
     return enabledKeys
@@ -87,8 +91,12 @@ def Search():
         data.write("0")
         data.close()
         arduino[0] = False
-def Start():
-    emulator(arduino,placeholder,newdata,enabledKeys)
+def StartStop():
+    if startstop == 1:
+        startstop = 0
+    elif startstop == 0:
+        startstop = 1
+    emulator()
 
 loadUI()
     
