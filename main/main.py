@@ -11,7 +11,6 @@ enabledKeys = []
 placeholder =''
 newdata = []
 arduino = [False,None]
-startstop = 0
 
 def loadUI():
     import UI
@@ -41,7 +40,7 @@ def searchArduino():
             break #Break out of the loop once the arduino is found 
     print("Arduino not found")
 
-def emulator():
+def emulator(startstop):
     if startstop == 1:
         if arduino[0]:
             while True:
@@ -91,15 +90,14 @@ def Search():
         data.write("0")
         data.close()
         arduino[0] = False
-def StartStop():
-    global startstop
+def StartStop(startstop):
     if startstop == 1:
         startstop = 0
     elif startstop == 0:
         startstop = 1
     else:
         startstop = 0
-    emulator()
+    emulator(startstop)
     
 
 loadUI()
