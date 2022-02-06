@@ -44,6 +44,9 @@ def emulator(startstop):
     if startstop == 1:
         if arduino[0]:
             while True:
+                arduino = open("keys.txt", "r") #opening arduino.txt to fetch state
+                selectedKeys = arduino.readline().split() #fetching data from arduino.txt
+                arduino.close()
                 newdata=[]
                 pressedKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
                 enabledKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
