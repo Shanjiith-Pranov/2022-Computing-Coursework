@@ -5,7 +5,7 @@ import main
 
 #enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 
-keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right"] #The list of all possible keys
+keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right","esc"] #The list of all possible keys
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
 
 root = tkinter.Tk() #Open New Window
@@ -52,16 +52,16 @@ def startController():
         #troubleshooting tips
         troubleshootLabel = tkinter.Label(syncArduino, text='Common troubleshooting procedures:\n- Unplug the controller and plug it back in\n- Press the "Find controller" button\n- Close any other application that uses serial communication with the arduino in the controller') #shows what showChoices means
         troubleshootLabel.grid(row=1,column=0)
-        stateLabel.update()
+        stateLabel.grid(row=0,column=0)
     elif state == 1: 
         status = "Found"
 
         startControllerBtn = tkinter.Button(root, text="Stop Controller",command=startController) #Btn to open window to sync to arduino
-        startControllerBtn.update()
+        startControllerBtn.grid(row=0,column=1)
     else: status = "Error"
 
     arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status: {status}") #shows current state of arduino
-    arduinoSyncLbl.update()
+    arduinoSyncLbl.grid(row=1,column=0,columnspan=2)
 
 def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
