@@ -1,4 +1,3 @@
-from logging import PlaceHolder
 import time
 import tkinter 
 import main
