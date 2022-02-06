@@ -4,7 +4,6 @@ from pyautogui import keyDown
 from pyautogui import keyUp
 from time import time
 
-keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right","esc"] #The list of all possible keys
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
 enabledKeys = []
 
@@ -33,12 +32,8 @@ def searchArduino():
             data.write("1")
             data.close()
             if len(arduino_ports) > 1:
-                print('Multiple controllers found - using the first')
-            else:
-                print("Controller found.", end =" ") # Arduino is found
                 arduino = [True, Serial(arduino_ports[0], 115200, timeout=.1)] #initialize connection with arduino
             break #Break out of the loop once the arduino is found 
-    print("Arduino not found")
 
 def emulator(startstop):
     if startstop == 1:
@@ -73,12 +68,7 @@ def emulator(startstop):
                     print("down: " + str(newdata) + "\n")
                     placeholder = newdata
         else:
-            print('''Controller connection not found. 
-            Common troubleshooting procedures:
-            - Unplug the controller and plug it back in
-            - Press the "Find controller" button
-            - Close any other application that uses serial communication with the arduino in the controller
-    ''')
+            pass
     else:
         pass
 
