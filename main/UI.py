@@ -27,10 +27,13 @@ def syncToArduino(): #opens window when syncing to arduino
     if state == 0: #when no controller is found
         syncArduino.title("Controller Status: Not Found")
         stateLabel = tkinter.Label(syncArduino, text="Controller Status: Not Found")
+        arduinoSyncLbl.config(text="Controller Status: Not Found")
+
         #troubleshooting tips
         troubleshootLabel = tkinter.Label(syncArduino, text='Common troubleshooting procedures:\n- Unplug the controller and plug it back in\n- Press the "Find controller" button\n- Close any other application that uses serial communication with the arduino in the controller') #shows what showChoices means
         troubleshootLabel.grid(row=1,column=0)
     elif state == 1: #when controller is found
+        arduinoSyncLbl.config(text="Controller Status: Found")
         syncArduino.title("Controller Status: Found!")
         stateLabel = tkinter.Label(syncArduino, text="Controller Status: Found!")
     stateLabel.grid(row=0,column=0)
