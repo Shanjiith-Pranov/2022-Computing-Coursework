@@ -52,7 +52,7 @@ def startController():
         troubleshootLabel.grid(row=1,column=0)
         stateLabel.grid(row=0,column=0)
     elif state == 1: 
-        main.Start()        
+        main.StartStop()        
 
         startControllerBtn = tkinter.Button(root, text="Stop Controller",command=startController) #Btn to open window to sync to arduino
         startControllerBtn.grid(row=0,column=1)
