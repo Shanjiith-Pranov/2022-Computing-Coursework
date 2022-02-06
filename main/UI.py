@@ -16,9 +16,8 @@ def syncToArduino(): #opens window when syncing to arduino
     main.Search()
 
     syncArduino.title("Controller Status: Loading...")
-    stateLabel = tkinter.Label(syncArduino, text="Controller Status: Loading...")
-    stateLabel.grid(row=0,column=0)
-    time.sleep(5) #ERROR #sleep while loading
+
+    time.sleep(5) #sleep while loading
     #states: 0 = not found, 1 = found, 2 = loading
     arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
     state = int(arduino.readline()) #fetching data from arduino.txt
