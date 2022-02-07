@@ -1,10 +1,8 @@
 import tkinter 
 
 #enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
-
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right"] #The list of all possible keys
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
-
 root = tkinter.Tk() #Open New Window
 root.title('Enter your Keys')
 
@@ -36,7 +34,7 @@ def startController():
 
     start.grid(row=0,column=0)    
     stop.grid(row=0,column=1)
-
+ 
 
 def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
@@ -51,8 +49,8 @@ def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
         data.write(selectedKeys[i] + " ")
     data.close()
     #updates the label every time Confirm Selection is pressed
-    showChoices = tkinter.Label(root, text=selectedKeys) #shows all the currently selected keys
-    showChoices.grid(row=4,column=3)
+    showChoices.config(text=selectedKeys) #shows all the currently selected keys
+    showChoices.grid(row=7,column=1)
 
 # Dropdown window
 
@@ -99,11 +97,13 @@ startControllerBtn = tkinter.Button(root, text="Start Controller",command=startC
 startControllerBtn.grid(row=0,column=1)
 
 choicesLabel = tkinter.Label(root, text="Selected keys:") #shows what showChoices means
+
+choiceButton = tkinter.Button(root, text="Confirm selection",command=getKeyInput) #Btn to set the selectedKeys
+choiceButton.grid(row=8,column=0,columnspan=2)
 showChoices = tkinter.Label(root, text=selectedKeys) #shows all the currently selected keys
 choicesLabel.grid(row=7,column=0)
 showChoices.grid(row=7,column=1)
 
-choiceButton = tkinter.Button(root, text="Confirm selection",command=getKeyInput) #Btn to set the selectedKeys
-choiceButton.grid(row=8,column=0,columnspan=2)
+
 
 root.mainloop() #Loop forever/stay in window
