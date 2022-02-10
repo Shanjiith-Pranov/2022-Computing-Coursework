@@ -60,6 +60,7 @@ def startController():
         stateLabel.grid(row=0,column=0)
     elif state == 1: 
         main.StartStop()
+        root.after(0, main.emulator)  # reschedule event in 2 seconds
         toggle = open("toggle.txt", "r") #opening arduino.txt to fetch state
         toggleValue = int(toggle.readline()) #fetching data from arduino.txt
         toggle.close()
@@ -143,4 +144,5 @@ choiceButton.grid(row=8,column=0,columnspan=2)
 def prints():
     print("hello")
 
+root.after(0, main.emulator)  # reschedule event in 2 seconds
 root.mainloop() #Loop forever/stay in window
