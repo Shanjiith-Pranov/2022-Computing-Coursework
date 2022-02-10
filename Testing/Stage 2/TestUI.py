@@ -34,7 +34,8 @@ def startController():
 
     start.grid(row=0,column=0)    
     stop.grid(row=0,column=1)
- 
+helpwindow = tkinter.Label(root, text=keys)
+helpwindow.grid(row=3,column=3)
 
 def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
@@ -52,43 +53,42 @@ def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     showChoices.config(text=selectedKeys) #shows all the currently selected keys
     showChoices.grid(row=7,column=1)
 
-# Dropdown window
 
 button1 = tkinter.StringVar()#Change to String
 button1.set('w') #Default Key1
-drop1 = tkinter.OptionMenu(root,button1,*keys) #Drop Down Menu for button1
+button1 = tkinter.Entry(root,text="Enter First Button") #Enter button1
 btnLabel1 = tkinter.Label(root, text="First Button") #Show what is button1
 btnLabel1.grid(row=2,column=0)
-drop1.grid(row=2,column=1)
+button1.grid(row=2,column=1)
 
 
 button2 = tkinter.StringVar()
 button2.set('a') #Default Key2
-drop2 = tkinter.OptionMenu(root,button2,*keys) #Drop Down Menu for button2
+button2 = tkinter.Entry(root,text="Enter Second Button") #Enter button2
 btnLabel2 = tkinter.Label(root, text="Second Button") #Show what is button2
 btnLabel2.grid(row=3,column=0)
-drop2.grid(row=3,column=1)
+button2.grid(row=3,column=1)
 
 button3 = tkinter.StringVar()
 button3.set('s') #Default Key3
-drop3 = tkinter.OptionMenu(root,button3,*keys) #Drop Down Menu for button3
+button3 = tkinter.Entry(root,text="Enter Third Button") #Enter button3
 btnLabel3 = tkinter.Label(root, text="Third Button") #Show what is button3
 btnLabel3.grid(row=4,column=0)
-drop3.grid(row=4,column=1)
+button3.grid(row=4,column=1)
 
 button4 = tkinter.StringVar()
 button4.set('d') #Default Key4
-drop4 = tkinter.OptionMenu(root,button4,*keys) #Drop Down Menu for button4
+button4 = tkinter.Entry(root,text="Enter Fourth Button") #Enter button1
 btnLabel4 = tkinter.Label(root, text="Fourth Button") #Show what is button4
 btnLabel4.grid(row=5,column=0)
-drop4.grid(row=5,column=1)
+button4.grid(row=5,column=1)
 
 button5 = tkinter.StringVar()
 button5.set('esc') #Default Key4
-drop5 = tkinter.OptionMenu(root,button5,*keys) #Drop Down Menu for button5
+button5 = tkinter.Entry(root,text="Enter Fifth Button") #Enter button1
 btnLabel5 = tkinter.Label(root, text="Fifth Button") #Show what is button5
 btnLabel5.grid(row=6,column=0)
-drop5.grid(row=6,column=1)
+button5.grid(row=6,column=1)
 
 arduinoSyncBtn = tkinter.Button(root, text="Sync the Device",command=syncToArduino) #Btn to open window to sync to arduino
 arduinoSyncBtn.grid(row=0,column=0)
