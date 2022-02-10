@@ -84,12 +84,6 @@ def Search():
         data.close()
         arduino[0] = False
 def StartStop(startstop):
-    if startstop == 1:
-        startstop = 0
-    elif startstop == 0:
-        startstop = 1
-    else:
-        startstop = 0
     emulator(startstop,selectedKeys,enabledKeys,placeholder,newdata,arduino)
     
 
