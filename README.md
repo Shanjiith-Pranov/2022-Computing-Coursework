@@ -15,7 +15,12 @@ python<your python version> -m pip install pyautogui
 python<your python version> -m pip install pyserial
 python<your python version> -m pip install tk
 ```
+## Running the code
+- Shanjiith please do this
 
+## Notes when testing the physical prototype
+- The prototype is fragile, please be gentle with it
+- Even though the usage of feet to press the buttons is stated, please do not use your feet to test the prototype as it may break the prototype
 
 ## Modules used
 ### Python
