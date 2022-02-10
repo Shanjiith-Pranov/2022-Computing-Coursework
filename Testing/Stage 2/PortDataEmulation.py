@@ -35,11 +35,12 @@ def emulator(arduino,placeholder,newdata,enabledKeys):
     if arduino[0]:
         while True:
             newdata=[]
-            pressedKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
-            enabledKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
+            pressedKeys = (arduino[1].readline()).decode().split(" ") #Read the data received from the arduino
+            enabledKeys = (arduino[1].readline()).decode().split(" ") #Read the data received from the arduino
             del pressedKeys[-1]
-            if pressedKeys[0] == "\xff0":
-                pressedKeys[0] = '0'
+            if len(pressedKeys)>0:
+                if pressedKeys[0] == "\xff0":
+                    pressedKeys[0] = '0'
             for i in range(len(pressedKeys)):
                 pressedKeys[i] = int(pressedKeys[i]) #converts every value into int
                 newdata.append(selectedKeys[pressedKeys[i]]) #converts into keypress + appends into a string
@@ -55,8 +56,8 @@ def emulator(arduino,placeholder,newdata,enabledKeys):
                     if k in placeholder:
                         pass
                     else:
-                        if pressedKeys[newdata]:
-                            pyautogui.keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
+                        # if pressedKeys[newdata]:
+                        pyautogui.keyDown(k) #keyup no input detected + if placeholder has a previous input
                 print("down: " + str(newdata) + "\n")
                 placeholder = newdata
     else:

@@ -4,6 +4,7 @@ from tkinter import ttk
 
 import main
 
+
 #enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right","esc"] #The list of all possible keys
@@ -45,10 +46,18 @@ def syncToArduino(): #opens window when syncing to arduino
         stateLabel = tkinter.Label(syncArduino, text="Controller Status: Found!")
     stateLabel.grid(row=0,column=0)
 
+def emulator():
+    arduinoValue = open("arduino.txt", "r") #opening arduino.txt to fetch state
+    toggle = open("toggle.txt", "r") #opening arduino.txt to fetch state
+    if int(arduinoValue.readline())  == 1 and int(toggle.readline())  == 1:
+        main.emulator()
+        root.after(0, emulator)    
+
+
 def startController():
-    arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
-    state = int(arduino.readline()) #fetching data from arduino.txt
-    arduino.close()
+    arduinoValue = open("arduino.txt", "r") #opening arduino.txt to fetch state
+    state = int(arduinoValue.readline()) #fetching data from arduino.txt
+    arduinoValue.close()
 
     if state == 0: 
         syncArduino = tkinter.Toplevel() #Open New Window
@@ -60,7 +69,7 @@ def startController():
         stateLabel.grid(row=0,column=0)
     elif state == 1: 
         main.StartStop()
-        root.after(0, main.emulator)  # reschedule event in 2 seconds
+          
         toggle = open("toggle.txt", "r") #opening arduino.txt to fetch state
         toggleValue = int(toggle.readline()) #fetching data from arduino.txt
         toggle.close()
@@ -68,6 +77,7 @@ def startController():
         print(toggleValue)
         if toggleValue == 1:
             startControllerBtn['text'] = "Stop Controller"
+            emulator()
         elif toggleValue == 0:
             startControllerBtn['text'] = "Start Controller"
         startControllerBtn.grid(row=0,column=1)
@@ -140,9 +150,5 @@ showChoices = tkinter.Label(root, text=selectedKeys) #shows all the currently se
 choicesLabel.grid(row=7,column=0)
 showChoices.grid(row=7,column=1)
 choiceButton.grid(row=8,column=0,columnspan=2)
-
-def prints():
-    print("hello")
-
-root.after(0, main.emulator)  # reschedule event in 2 seconds
+   
 root.mainloop() #Loop forever/stay in window
