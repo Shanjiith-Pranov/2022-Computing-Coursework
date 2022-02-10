@@ -35,7 +35,7 @@ def searchArduino():
                 arduino = [True, Serial(arduino_ports[0], 115200, timeout=.1)] #initialize connection with arduino
             break #Break out of the loop once the arduino is found 
 
-def emulator(startstop):
+def emulator(startstop,selectedKeys,enabledKeys,placeholder,newdata,arduino):
     if startstop == 1:
         if arduino[0]:
             while True:
@@ -90,7 +90,7 @@ def StartStop(startstop):
         startstop = 1
     else:
         startstop = 0
-    emulator(startstop)
+    emulator(startstop,selectedKeys,enabledKeys,placeholder,newdata,arduino)
     
 
 loadUI()
