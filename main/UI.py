@@ -1,6 +1,5 @@
 from time import sleep
 import tkinter 
-
 import main
 from functools import partial
 
