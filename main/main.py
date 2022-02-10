@@ -12,10 +12,10 @@ newdata = []
 arduino = [False,None]
 startstop = 0
 
-def loadUI():
+def loadUI(): #Shanjiith
     import UI
 
-def searchArduino():
+def searchArduino(): #Shanjiith + Darius + Hern Yee
     t_end = time() + 9
     while time() < t_end:
         arduino_ports = [ # Find all the ports with "IOUSBHostDevice" as its tag
@@ -36,7 +36,7 @@ def searchArduino():
                 arduino = [True, Serial(arduino_ports[0], 115200, timeout=.1)] #initialize connection with arduino
             break #Break out of the loop once the arduino is found 
 
-def emulator(startstop,selectedKeys,enabledKeys,placeholder,newdata,arduino):
+def emulator(startstop,selectedKeys,enabledKeys,placeholder,newdata,arduino): #Shanjiith + Hern Yee + Darius
     
         if arduino[0]:
             while True:
@@ -75,7 +75,7 @@ def emulator(startstop,selectedKeys,enabledKeys,placeholder,newdata,arduino):
 def SendEnable():
     return enabledKeys
 
-def Search():
+def Search(): #Shanjiith
     try:
         searchArduino()
     except Exception as exception:
@@ -84,7 +84,7 @@ def Search():
         data.close()
         arduino[0] = False
 
-def StartStop():
+def StartStop(): #Shanjiith + Darius
     toggle = open("toggle.txt", "w")
     global startstop
     if startstop == 1:

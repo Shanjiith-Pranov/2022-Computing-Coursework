@@ -17,7 +17,7 @@ root.tk.call("set_theme", "dark")
 
 card = ttk.Frame(root, style='Card.TFrame', padding=(5, 6, 7, 8))
 
-def syncToArduino(): #opens window when syncing to arduino
+def syncToArduino(): #Darius + Hern Yee/opens window when syncing to arduino
     syncArduino = tkinter.Toplevel() #Open New Window
 
     main.Search()
@@ -45,12 +45,12 @@ def syncToArduino(): #opens window when syncing to arduino
         stateLabel = tkinter.Label(syncArduino, text="Controller Status: Found!")
     stateLabel.grid(row=0,column=0)
 
-def startController():
+def startController(): #Darius + Hern Yee + Shanjiith
     arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
     state = int(arduino.readline()) #fetching data from arduino.txt
     arduino.close()
 
-    if state == 0: 
+    if state == 0: #Darius + Shanjiith/if an arduino is connected: run this
         syncArduino = tkinter.Toplevel() #Open New Window
         syncArduino.title("Controller Status: Not Found")
         stateLabel = tkinter.Label(syncArduino, text="Controller Status: Not Found")
@@ -58,7 +58,7 @@ def startController():
         troubleshootLabel = tkinter.Label(syncArduino, text='Common troubleshooting procedures:\n- Unplug the controller and plug it back in\n- Press the "Find controller" button\n- Close any other application that uses serial communication with the arduino in the controller') #shows what showChoices means
         troubleshootLabel.grid(row=1,column=0)
         stateLabel.grid(row=0,column=0)
-    elif state == 1: 
+    elif state == 1: #Darius + Shanjiith/if an arduino is connected: run this
         main.StartStop()
         toggle = open("toggle.txt", "r") #opening arduino.txt to fetch state
         toggleValue = int(toggle.readline()) #fetching data from arduino.txt
@@ -71,7 +71,7 @@ def startController():
             startControllerBtn['text'] = "Start Controller"
         startControllerBtn.grid(row=0,column=1)
 
-def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
+def getKeyInput(): #Darius + Hern Yee/updates the selected keys when Confirm Selection is pressed
     #updates the value of each key when Confirm Selection is pressed
     selectedKeys[0] = button1.get() 
     selectedKeys[1] = button2.get()
@@ -87,7 +87,7 @@ def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
     showChoices.config(text=selectedKeys) #shows all the currently selected keys
     #showChoices.grid(row=7,column=1)
 
-# Dropdown window
+#Hern Yee/ Dropdown windows
 
 button1 = tkinter.StringVar()#Change to String
 button1.set('w') #Default Key1
@@ -95,7 +95,6 @@ drop1 = tkinter.OptionMenu(root,button1,*keys) #Drop Down Menu for button1
 btnLabel1 = tkinter.Label(root, text="First Button") #Show what is button1
 btnLabel1.grid(row=2,column=0)
 drop1.grid(row=2,column=1)
-
 
 button2 = tkinter.StringVar()
 button2.set('a') #Default Key2
@@ -125,6 +124,8 @@ btnLabel5 = tkinter.Label(root, text="Fifth Button") #Show what is button5
 btnLabel5.grid(row=6,column=0)
 drop5.grid(row=6,column=1)
 
+#Darius + Hern Yee/setting up the other buttons
+
 arduinoSyncBtn = ttk.Button(root, text="Sync the Device",style='Toggle.TButton', command=syncToArduino) #Btn to open window to sync to arduino
 arduinoSyncLbl = tkinter.Label(root,text="Controller Status: Not Found") #shows current state of arduino
 arduinoSyncLbl.grid(row=1,column=0,columnspan=2)
@@ -140,7 +141,4 @@ choicesLabel.grid(row=7,column=0)
 showChoices.grid(row=7,column=1)
 choiceButton.grid(row=8,column=0,columnspan=2)
 
-def prints():
-    print("hello")
-
-root.mainloop() #Loop forever/stay in window
+root.mainloop() #HERN YEE/Loop forever/stay in window
