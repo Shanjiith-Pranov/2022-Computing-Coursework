@@ -10,6 +10,7 @@ enabledKeys = []
 placeholder =''
 newdata = []
 arduino = [False,None]
+startstop = 0
 
 def loadUI():
     import UI
@@ -83,15 +84,20 @@ def Search():
         data.write("0")
         data.close()
         arduino[0] = False
-def StartStop(startstop):
+
+def StartStop():
+    toggle = open("toggle.txt", "w")
+    global startstop
     if startstop == 1:
         startstop = 0
+        toggle.write("0") #fetching data from arduino.txt
     elif startstop == 0:
         startstop = 1
+        toggle.write("1") #fetching data from arduino.txt
     else:
         startstop = 0
+    toggle.close()
     emulator(startstop,selectedKeys,enabledKeys,placeholder,newdata,arduino)
     
 
 loadUI()
-    

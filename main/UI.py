@@ -1,15 +1,21 @@
 from time import sleep
 import tkinter 
+from tkinter import ttk
+
 import main
 
 #enable = PortDataEmulation.sendEnable() #[X,X,X,X,X] where X is 1/0
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right","esc"] #The list of all possible keys
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
-start_stop_toggle = 0
+
 
 root = tkinter.Tk() #Open New Window
 root.title('Enter your Keys')
+root.tk.call("source", "azure.tcl")
+root.tk.call("set_theme", "dark")
+
+card = ttk.Frame(root, style='Card.TFrame', padding=(5, 6, 7, 8))
 
 def syncToArduino(): #opens window when syncing to arduino
     syncArduino = tkinter.Toplevel() #Open New Window
@@ -53,11 +59,16 @@ def startController():
         troubleshootLabel.grid(row=1,column=0)
         stateLabel.grid(row=0,column=0)
     elif state == 1: 
-        main.StartStop(start_stop_toggle)        
-        if start_stop_toggle == 1:
-            startControllerBtn = tkinter.Button(root, text="Stop Controller",command=startController) #Btn to open window to sync to arduino
-        else:
-            startControllerBtn = tkinter.Button(root, text="Start Controller",command=startController) #Btn to open window to sync to arduino
+        main.StartStop()
+        toggle = open("toggle.txt", "r") #opening arduino.txt to fetch state
+        toggleValue = int(toggle.readline()) #fetching data from arduino.txt
+        toggle.close()
+        sleep(2)      
+        print(toggleValue)
+        if toggleValue == 1:
+            startControllerBtn['text'] = "Stop Controller"
+        elif toggleValue == 0:
+            startControllerBtn['text'] = "Start Controller"
         startControllerBtn.grid(row=0,column=1)
 
 def getKeyInput(): #updates the selected keys when Confirm Selection is pressed
@@ -114,16 +125,16 @@ btnLabel5 = tkinter.Label(root, text="Fifth Button") #Show what is button5
 btnLabel5.grid(row=6,column=0)
 drop5.grid(row=6,column=1)
 
-arduinoSyncBtn = tkinter.Button(root, text="Sync the Device",command=syncToArduino) #Btn to open window to sync to arduino
-arduinoSyncLbl = tkinter.Label(root,text=f"Controller Status: Not Found") #shows current state of arduino
+arduinoSyncBtn = ttk.Button(root, text="Sync the Device",style='Toggle.TButton', command=syncToArduino) #Btn to open window to sync to arduino
+arduinoSyncLbl = tkinter.Label(root,text="Controller Status: Not Found") #shows current state of arduino
 arduinoSyncLbl.grid(row=1,column=0,columnspan=2)
 arduinoSyncBtn.grid(row=0,column=0)
 
-startControllerBtn = tkinter.Button(root, text="Start Controller",command=startController) #Btn to open window to sync to arduino
+startControllerBtn = ttk.Button(root, text="Start Controller",style='Toggle.TButton', command=startController) #Btn to open window to sync to arduino
 startControllerBtn.grid(row=0,column=1)
 
 choicesLabel = tkinter.Label(root, text="Selected keys:") #shows what showChoices means
-choiceButton = tkinter.Button(root, text="Confirm selection",command=getKeyInput) #Btn to set the selectedKeys
+choiceButton = ttk.Button(root, text="Confirm selection",style='Accent.TButton', command=getKeyInput) #Btn to set the selectedKeys
 showChoices = tkinter.Label(root, text=selectedKeys) #shows all the currently selected keys
 choicesLabel.grid(row=7,column=0)
 showChoices.grid(row=7,column=1)
