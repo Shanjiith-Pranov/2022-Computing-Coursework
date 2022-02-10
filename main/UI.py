@@ -140,4 +140,7 @@ choicesLabel.grid(row=7,column=0)
 showChoices.grid(row=7,column=1)
 choiceButton.grid(row=8,column=0,columnspan=2)
 
+def prints():
+    print("hello")
+
 root.mainloop() #Loop forever/stay in window
