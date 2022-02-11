@@ -71,9 +71,9 @@ def startController(): #Darius + Hern Yee + Shanjiith/ Checks if controller is c
         toggleValue = int(toggle.readline()) #fetching data from arduino.txt
         toggle.close()    
         sleep(2)
-        if toggleValue == 1:
+        if toggleValue == 1: #runs code if toggle is on
             emulator()
-        elif toggleValue == 0:
+        elif toggleValue == 0: #else, pass
             pass
         startControllerBtn.grid(row=0,column=1)
 
@@ -84,8 +84,8 @@ def getKeyInput(): #Darius + Hern Yee/updates the selected keys when Confirm Sel
     selectedKeys[2] = button3.get()
     selectedKeys[3] = button4.get()
     selectedKeys[4] = button5.get()
-    #Saves selectedKeys into a text file
-    data = open("keys.txt",'w')
+    
+    data = open("keys.txt",'w') #Saves selectedKeys into a text file
     for i in range(len(selectedKeys)): #splits selected keys up
         data.write(selectedKeys[i] + " ")
     data.close()
