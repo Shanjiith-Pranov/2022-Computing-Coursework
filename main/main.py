@@ -91,15 +91,8 @@ def emulator(): #Shanjiith + Hern Yee + Darius
                     if j in newdata:
                         pass
                     else:
-                        if j == "macro_1":
-                            macro = open("macros.txt", "r") #opening arduino.txt to fetch state
-                            keyUp(macro.readline()) #fetching data from arduino.txt
-                            macro.close()
-                        elif j == "macro_2":
-                            macro = open("macros.txt", "r") #opening arduino.txt to fetch state
-                            _ = macro.readline()
-                            keyUp(macro.readline()) #fetching data from arduino.txt
-                            macro.close()
+                        if j == "macro_1" or j == "macro_2":
+                            pass
                         else:
                             keyUp(j) #keyup if no input detected + if placeholder has a previous input
                 for k in newdata:
@@ -109,8 +102,10 @@ def emulator(): #Shanjiith + Hern Yee + Darius
                         if k == "macro_1":
                             macro = open("macros.txt", "r") #opening arduino.txt to fetch state
                             macroText = macro.readline()
+                            macroText = macroText[:-2]
                             for l in macroText:
                                 keyDown(l) #fetching data from arduino.txt
+                                keyUp(l) #fetching data from arduino.txt
                             macro.close()
                         elif k == "macro_2":
                             macro = open("macros.txt", "r") #opening arduino.txt to fetch state
@@ -118,6 +113,7 @@ def emulator(): #Shanjiith + Hern Yee + Darius
                             macroText = macro.readline()
                             for l in macroText:
                                 keyDown(l) #fetching data from arduino.txt
+                                keyUp(l) #fetching data from arduino.txt
                             macro.close()
                         else:
                             keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
