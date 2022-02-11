@@ -87,7 +87,6 @@ def emulator():
                 pressedKeys[i] = int(pressedKeys[i]) #converts every value into int
                 newdata.append(selectedKeys[pressedKeys[i]]) #converts into keypress + appends into a string
             if placeholder != newdata:
-                print(newdata)
                 for j in placeholder:
                     if j in newdata:
                         pass

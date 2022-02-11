@@ -74,7 +74,6 @@ def startController():
         toggleValue = int(toggle.readline()) #fetching data from arduino.txt
         toggle.close()
         sleep(2)      
-        print(toggleValue)
         if toggleValue == 1:
             startControllerBtn['text'] = "Stop Controller"
             emulator()
