@@ -70,8 +70,8 @@ def startController(): #Darius + Hern Yee + Shanjiith/ Checks if controller is c
         toggle = open("toggle.txt", "r") #opening arduino.txt to fetch state
         toggleValue = int(toggle.readline()) #fetching data from arduino.txt
         toggle.close()    
+        sleep(2)
         if toggleValue == 1:
-            sleep(2)
             emulator()
         elif toggleValue == 0:
             pass
