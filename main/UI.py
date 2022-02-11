@@ -12,8 +12,6 @@ root.title('Enter your Keys')
 root.tk.call("source", "azure.tcl")
 root.tk.call("set_theme", "dark")
 
-card = ttk.Frame(root, style='Card.TFrame', padding=(5, 6, 7, 8))
-
 def syncToArduino(): #Darius + Hern Yee/opens window when syncing to arduino
     syncArduino = tkinter.Toplevel() #Open New Window
 
