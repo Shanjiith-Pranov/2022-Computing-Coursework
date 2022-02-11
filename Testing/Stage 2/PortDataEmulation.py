@@ -2,7 +2,7 @@ import serial
 import serial.tools.list_ports
 import pyautogui
 import time
-import UI
+# import UI
 
 keys = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","[","]","\\",";","'",",",".","/","up","down","left","right","esc"] #The list of all possible keys
 selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, cuztomisable list
@@ -35,11 +35,12 @@ def emulator(arduino,placeholder,newdata,enabledKeys):
     if arduino[0]:
         while True:
             newdata=[]
-            pressedKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
-            enabledKeys = (arduino[1].readline()).split(" ") #Read the data received from the arduino
+            pressedKeys = (arduino[1].readline()).decode().split(" ") #Read the data received from the arduino
+            enabledKeys = (arduino[1].readline()).decode().split(" ") #Read the data received from the arduino
             del pressedKeys[-1]
-            if pressedKeys[0] == "\xff0":
-                pressedKeys[0] = '0'
+            if len(pressedKeys)>0:
+                if pressedKeys[0] == "\xff0":
+                    pressedKeys[0] = '0'
             for i in range(len(pressedKeys)):
                 pressedKeys[i] = int(pressedKeys[i]) #converts every value into int
                 newdata.append(selectedKeys[pressedKeys[i]]) #converts into keypress + appends into a string
@@ -55,8 +56,8 @@ def emulator(arduino,placeholder,newdata,enabledKeys):
                     if k in placeholder:
                         pass
                     else:
-                        if pressedKeys[newdata]:
-                            pyautogui.keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
+                        # if pressedKeys[newdata]:
+                        pyautogui.keyDown(k) #keyup no input detected + if placeholder has a previous input
                 print("down: " + str(newdata) + "\n")
                 placeholder = newdata
     else:
