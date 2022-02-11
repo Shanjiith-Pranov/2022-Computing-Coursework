@@ -4,7 +4,9 @@
 ### Testing
 [Stage 1](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/tree/main/Testing/Stage%201) and [Stage 2](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/tree/main/Testing/Stage%202) represents the different stages in our code development.
 ### Main 
-[Main]() contains the final "deployment-ready" code.<sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup>_What else did you expect?_</sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub>
+[Main](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/tree/main/main) contains the final stage of code.
+### Deployment
+[Deployment]() contains the code to be zipped and released.
 
 ## Installation
 ## Installing Dependencies:
