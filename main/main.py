@@ -16,7 +16,7 @@ startstop = 0
 def loadUI(): #Shanjiith
     import UI
 
-def searchArduino():  #Shanjiith + Darius + Hern Yee
+def searchArduino(): #Shanjiith + Darius + Hern Yee
     global arduino
     t_end = time() + 9
     while time() < t_end:
@@ -37,10 +37,10 @@ def searchArduino():  #Shanjiith + Darius + Hern Yee
             arduino = Serial(arduino_ports[0], 115200, timeout=.1) # Set the serial of the arduino of serial coomunication
             break #Break out of the loop once the arduino is found 
 
-def SendEnable():
+def SendEnable(): #Hern Yee/Returns enabledKeys
     return enabledKeys
 
-def Search(): #Shanjiith
+def Search(): #Shanjiith/ Searches for arduino
     try:
         searchArduino()
     except Exception as exception:
@@ -64,7 +64,7 @@ def StartStop(): #Shanjiith + Darius
         startstop = 0
     toggle.close()    
 
-def emulator():
+def emulator(): #Shanjiith + Hern Yee + Darius
     global selectedKeys,enabledKeys,placeholder,newdata,arduino
     arduinoValue = open("arduino.txt", "r") #opening arduino.txt to fetch state
     if int(arduinoValue.readline())  == 1:
