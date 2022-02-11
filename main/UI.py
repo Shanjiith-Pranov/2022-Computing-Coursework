@@ -69,13 +69,12 @@ def startController(): #Darius + Hern Yee + Shanjiith/ Checks if controller is c
           
         toggle = open("toggle.txt", "r") #opening arduino.txt to fetch state
         toggleValue = int(toggle.readline()) #fetching data from arduino.txt
-        toggle.close()
-        sleep(2)      
+        toggle.close()    
         if toggleValue == 1:
-            startControllerBtn['text'] = "Stop Controller"
+            sleep(2)
             emulator()
         elif toggleValue == 0:
-            startControllerBtn['text'] = "Start Controller"
+            pass
         startControllerBtn.grid(row=0,column=1)
 
 def getKeyInput(): #Darius + Hern Yee/updates the selected keys when Confirm Selection is pressed
@@ -136,7 +135,7 @@ arduinoSyncLbl = tkinter.Label(root,text="Controller Status: Not Found") #shows 
 arduinoSyncLbl.grid(row=1,column=0,columnspan=2)
 arduinoSyncBtn.grid(row=0,column=0)
 
-startControllerBtn = ttk.Button(root, text="Start Controller",style='Toggle.TButton', command=startController) #Btn to open window to sync to arduino
+startControllerBtn = ttk.Button(root, text="Run Controller",style='Toggle.TButton', command=startController) #Btn to open window to sync to arduino
 startControllerBtn.grid(row=0,column=1)
 
 choicesLabel = tkinter.Label(root, text="Selected keys:") #shows what showChoices means
