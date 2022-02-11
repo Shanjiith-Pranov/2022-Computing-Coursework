@@ -22,7 +22,8 @@ Downlad the zip the file from the [releases](https://github.com/Shanjiith-Pranov
 - Next, press `Sync the Device`. The programm will search for a connected controller for 10 seconds.
 - If the controller is not found, follow the instructions shown
 - After the controller is found, press the `Run arduino` button. The button should turn blue.
-- If you would like to remap a key, press the the `Run arduino` button again and wait for it to turn grey. Now, change the key for the respective button and hit `Confirm selection`.
+- If you would like to remap a key, press the the `Run arduino` button again and wait for it to turn grey to stop the controller. Now, change the key for the respective button and hit `Confirm selection`.
+- If you would like to change a macro, press the the `Run arduino` button again and wait for it to turn grey to stop the controller. Now, open the file `macros.txt` and make changes to the existing macros. After editing, save the file and close it. Remeber to make sure that there are only 2 lines in the file.
 ## Troubleshooting
 ### "Python" would like to control this computer using accessibility features.
 If you see this warning: ![](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/blob/main/warning.jpg)
