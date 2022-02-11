@@ -1,2 +1,2 @@
-Hello world 
-This is a macro
+hello world 
+this is a macro
