@@ -6,7 +6,7 @@
 ### Main 
 [Main](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/tree/main/main) contains the final stage of code.
 ### Deployment
-[Deployment]() contains the code to be zipped and released.
+[Deployment](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/tree/main/Deployment) contains the code to be zipped and released.
 
 ## Installation
 ## Installing Dependencies:
@@ -16,7 +16,7 @@ python<your python version> -m pip install pyserial
 python<your python version> -m pip install tk
 ```
 ## Running the code
-Downlad the zip the file from the [releases](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/releases/new). Unzip the file and open `main.py` in your choice of editor(IDLE for teachers testing this code). Run the code.
+Downlad `AGC.zip` from the [releases](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/releases/new). Unzip the file and open `main.py` in your choice of editor(IDLE for teachers testing this code). Run the code.
 ## Testing the program
 - First, connect the controller to the machine you are running the code on.
 - Next, press `Sync the Device`. The programm will search for a connected controller for 10 seconds.
