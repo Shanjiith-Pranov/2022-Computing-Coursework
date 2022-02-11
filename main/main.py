@@ -12,7 +12,11 @@ newdata = []
 arduino = [False,None]
 startstop = 0
 
-def searchArduino():
+
+def loadUI(): #Shanjiith
+    import UI
+
+def searchArduino():  #Shanjiith + Darius + Hern Yee
     global arduino
     t_end = time() + 9
     while time() < t_end:
@@ -33,12 +37,10 @@ def searchArduino():
             arduino = Serial(arduino_ports[0], 115200, timeout=.1) # Set the serial of the arduino of serial coomunication
             break #Break out of the loop once the arduino is found 
 
-
-
 def SendEnable():
     return enabledKeys
 
-def Search():
+def Search(): #Shanjiith
     try:
         searchArduino()
     except Exception as exception:
@@ -47,7 +49,7 @@ def Search():
         data.close()
         arduino[0] = False
 
-def StartStop():
+def StartStop(): #Shanjiith + Darius
     toggle = open("toggle.txt", "w")
     global startstop
     if startstop == 1:
