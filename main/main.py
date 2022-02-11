@@ -78,7 +78,6 @@ def emulator(): #Shanjiith + Hern Yee + Darius
             keys.close()
             newdata=[]
             pressedKeys = (arduino.readline()).decode().split(" ") #Read the data received from the arduino
-            enabledKeys = (arduino.readline()).decode().split(" ") #Read the data received from the arduino
             del pressedKeys[-1]
             if len(pressedKeys)>0:
                 if len(pressedKeys[0]) != 1:
