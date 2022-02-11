@@ -57,6 +57,6 @@ You can find the pictures of our prototype [here](https://github.com/Shanjiith-P
 ### Arduino
 - https://create.arduino.cc/projecthub/smart-tech/programming-arduino-using-python-f3d2c0
 - https://realpython.com/arduino-python/
-- https://realpython.com/arduino-python/#reading-digital-inputs: button
+- https://realpython.com/arduino-python/#reading-digital-inputs
 - https://github.com/mattiasjahnke/arduino-projects/tree/master/arduino-pc-joystick	
 - https://stackoverflow.com/questions/24214643/python-to-automatically-select-serial-ports-for-arduino	
