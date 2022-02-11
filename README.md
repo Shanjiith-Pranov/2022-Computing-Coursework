@@ -45,3 +45,18 @@ You can find the pictures of our prototype [here](https://github.com/Shanjiith-P
 - [pyserial](https://github.com/pyserial/pyserial)
 - [pyautogui](https://github.com/asweigart/pyautogui)
 - [tkinter](https://docs.python.org/3/library/tk.html)
+
+## References
+### Tkinter 
+- https://www.youtube.com/watch?v=YXPyB4XeYLA 
+- https://realpython.com/python-gui-tkinter/ 
+- https://stackoverflow.com/questions/44588154/python-tkinter-how-to-config-a-button-that-was-generated-in-a-loop
+- https://stackoverflow.com/questions/7573031/when-i-use-update-with-tkinter-my-label-writes-another-line-instead-of-rewriti
+- https://www.tutorialspoint.com/python/tk_button.htm
+
+### Arduino
+- https://create.arduino.cc/projecthub/smart-tech/programming-arduino-using-python-f3d2c0
+- https://realpython.com/arduino-python/
+- https://realpython.com/arduino-python/#reading-digital-inputs: button
+- https://github.com/mattiasjahnke/arduino-projects/tree/master/arduino-pc-joystick	
+- https://stackoverflow.com/questions/24214643/python-to-automatically-select-serial-ports-for-arduino	
