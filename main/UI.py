@@ -9,7 +9,7 @@ selectedKeys = ["w","a","s","d","esc"] # the keys that are currently selected, c
 #Hern Yee + Darius/Setup 
 root = tkinter.Tk() #Open New Window
 root.title('Enter your Keys')
-root.tk.call("source", "azure.tcl")
+root.tk.call("source", "azure.tcl") #Setting the theme
 root.tk.call("set_theme", "dark")
 
 def syncToArduino(): #Darius + Hern Yee/opens window when syncing to arduino

@@ -12,11 +12,12 @@ newdata = []
 arduino = [False,None]
 startstop = 0
 
-
-def loadUI(): #Shanjiith
+## Shanjiith
+def loadUI(): # Function to import and run the UI.py -> This import is a seperate function because importing and running UI.py and the begining causes a circular import and cross-file access does not work properly
     import UI
 
-def searchArduino(): #Shanjiith + Darius + Hern Yee
+## Shanjiith + Darius + Hern Yee
+def searchArduino(): 
     global arduino
     t_end = time() + 9
     while time() < t_end:
@@ -37,55 +38,52 @@ def searchArduino(): #Shanjiith + Darius + Hern Yee
             arduino = Serial(arduino_ports[0], 115200, timeout=.1) # Set the serial of the arduino of serial coomunication
             break #Break out of the loop once the arduino is found 
 
-def SendEnable(): #Hern Yee/Returns enabledKeys
-    return enabledKeys
-
-def Search(): #Shanjiith/ Searches for arduino
+## Shanjiith
+def Search(): # Searches for arduino
     try:
         searchArduino()
-    except Exception as exception:
+    except Exception as exception: # Captures and exception error caused by the controller's arduino's port being using by another application
         data = open("arduino.txt",'w')
-        data.write("0")
+        data.write("0") # Changes the value in arduino.txt to "0" so the code recognises as no controller connected
         data.close()
-        arduino[0] = False
 
-def StartStop(): #Shanjiith + Darius
+## Shanjiith + Darius
+def StartStop(): # Starts and stops the emulation
     toggle = open("toggle.txt", "w")
     global startstop
-    if startstop == 1:
+    if startstop == 1: # If the emulation is running
         startstop = 0
-        toggle.write("0") #fetching data from arduino.txt
+        toggle.write("0") # Change the value in toggle.txt to "0" so the code can read from the file and stop the emulation
         emulator()
-    elif startstop == 0:
+    elif startstop == 0: # If the emulation is not running
         startstop = 1
-        toggle.write("1") #fetching data from arduino.txt
+        toggle.write("1") # Change the value in toggle.txt to "1" so the code can read from the file and start the emulation
         emulator()
     else:
         startstop = 0
     toggle.close()    
 
-def emulator(): #Shanjiith + Hern Yee + Darius
+## Shanjiith + Hern Yee + Darius
+def emulator():
     global selectedKeys,enabledKeys,placeholder,newdata,arduino
-    arduinoValue = open("arduino.txt", "r") #opening arduino.txt to fetch state
-    if int(arduinoValue.readline())  == 1:
+    arduinoValue = open("arduino.txt", "r") 
+    if int(arduinoValue.readline())  == 1: # If the value in arduino.txt is '1' -> arduino is found
         arduinoValue.close()
-        toggle = open("toggle.txt", "r") #opening arduino.txt to fetch state
-        # while True:
-        if  toggle.readline()  == '1':
-            
-            keys = open("keys.txt", "r") #opening arduino.txt to fetch state
-            selectedKeys = keys.readline().split() #fetching data from arduino.txt
+        toggle = open("toggle.txt", "r") 
+        if  toggle.readline()  == '1': # If the value in toggle.txt is '1' -> run emulation
+            keys = open("keys.txt", "r") 
+            selectedKeys = keys.readline().split() # Read the data in keys.txt and convert them into a list -> This value are the keys that the buttons will emulate 
             keys.close()
             newdata=[]
-            pressedKeys = (arduino.readline()).decode().split(" ") #Read the data received from the arduino
-            del pressedKeys[-1]
-            if len(pressedKeys)>0:
-                if len(pressedKeys[0]) != 1:
+            pressedKeys = (arduino.readline()).decode().split(" ") # Read the data received from the arduino and split -> Example of recieved data: "0 3 4 /r/n"
+            del pressedKeys[-1] # Remove the extra "/r/n"
+            if len(pressedKeys)> 0:
+                if len(pressedKeys[0]) != 1: # If the first value of the list is not a single digit, only get the last digit -> Some time when reading the data from the arduino, it add a random hex in front. This code is to remove that hex.
                     pressedKeys[0] = pressedKeys[0][-1]
             for i in range(len(pressedKeys)):
-                pressedKeys[i] = int(pressedKeys[i]) #converts every value into int
-                newdata.append(selectedKeys[pressedKeys[i]]) #converts into keypress + appends into a string
-            if placeholder != newdata:
+                pressedKeys[i] = int(pressedKeys[i]) # Converts every value into int
+                newdata.append(selectedKeys[pressedKeys[i]]) # Converts into respective keys + appends into a string
+            if placeholder != newdata: # If the placeholder, the keys that were previously pressed, is different from newdata -> Means that the keys pressed has changed.
                 for j in placeholder:
                     if j in newdata:
                         pass
@@ -123,4 +121,4 @@ def emulator(): #Shanjiith + Hern Yee + Darius
     else:
         pass
 
-loadUI()
+loadUI() # Load the UI
