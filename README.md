@@ -30,7 +30,7 @@ If you see this warning: ![](https://github.com/Shanjiith-Pranov/2022-Computing-
 Click `Open System Preferences`. Click the lock icon and enter your password. Click `Accessibility` in the left column. Click the checkmark beside `Python`.
 ![](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/blob/main/system_preferences.jpg)
 ### Loading for while (Beach ball of death)
-- The loading maybe caused because your computer is lagging or the programm is running in the background but there is no text field to input the keys into. Please wait for a while or quit the app and reopen. 
+- The loading maybe caused because your computer is lagging or the programm is running in the background but there is no text field to input the keys into. Please wait for a while or quit(or force quit) the app and reopen. 
 - Another cause of the problem is trying to change the keys while the controller is running. Close the app and reopen it. When changing keys remember to stop the controller first.
 
 ## Physical Prototype
