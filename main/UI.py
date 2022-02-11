@@ -43,6 +43,14 @@ def syncToArduino(): #Darius + Hern Yee/opens window when syncing to arduino
         stateLabel = tkinter.Label(syncArduino, text="Controller Status: Found!")
     stateLabel.grid(row=0,column=0)
 
+def emulator():
+    arduinoValue = open("arduino.txt", "r") #opening arduino.txt to fetch state
+    toggle = open("toggle.txt", "r") #opening arduino.txt to fetch state
+    if int(arduinoValue.readline())  == 1 and int(toggle.readline())  == 1:
+        main.emulator()
+        root.after(0, emulator)    
+
+
 def startController(): #Darius + Hern Yee + Shanjiith/ Checks if controller is connected + starts the controller
     arduino = open("arduino.txt", "r") #opening arduino.txt to fetch state
     state = int(arduino.readline()) #fetching data from arduino.txt
@@ -58,13 +66,14 @@ def startController(): #Darius + Hern Yee + Shanjiith/ Checks if controller is c
         stateLabel.grid(row=0,column=0)
     elif state == 1: #Darius + Shanjiith/if an arduino is connected: run this
         main.StartStop()
+          
         toggle = open("toggle.txt", "r") #opening arduino.txt to fetch state
         toggleValue = int(toggle.readline()) #fetching data from arduino.txt
         toggle.close()
         sleep(2)      
-
         if toggleValue == 1:
             startControllerBtn['text'] = "Stop Controller"
+            emulator()
         elif toggleValue == 0:
             startControllerBtn['text'] = "Start Controller"
         startControllerBtn.grid(row=0,column=1)
@@ -135,6 +144,5 @@ choiceButton = ttk.Button(root, text="Confirm selection",style='Accent.TButton',
 showChoices = tkinter.Label(root, text=selectedKeys) #shows all the currently selected keys
 choicesLabel.grid(row=7,column=0)
 showChoices.grid(row=7,column=1)
-choiceButton.grid(row=8,column=0,columnspan=2)
-
-root.mainloop() #Hern Yee/Loop forever, stay in window
+choiceButton.grid(row=8,column=0,columnspan=2)   
+root.mainloop() #Loop forever/stay in window
