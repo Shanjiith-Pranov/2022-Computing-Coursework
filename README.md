@@ -7,8 +7,6 @@
 [Main]() contains the final "deployment-ready" code.<sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup>_What else did you expect?_</sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub></sup></sub>
 
 ## Installation
-### Files
-Down the latest release [here](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/releases). Open `main.py` in your choice of
 ## Installing Dependencies:
 ```
 python<your python version> -m pip install pyautogui
@@ -16,7 +14,13 @@ python<your python version> -m pip install pyserial
 python<your python version> -m pip install tk
 ```
 ## Running the code
-- Shanjiith please do this
+Downlad the zip the file from the [releases](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/releases/new). Unzip the file and open `main.py` in your choice of editor(IDLE for teachers testing this code). Run the code.
+## Troubleshooting
+### "Python" would like to control this computer using accessibility features.
+If you see this warning: ![](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/blob/main/warning.jpg)
+Click `Open System Preferences`. Click the lock icon and enter your password. Click `Accessibility` in the left column. Click the checkmark beside `Python`.
+![](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/blob/main/system_preferences.jpg)
+
 
 ## Notes when testing the physical prototype
 - The prototype is fragile, please be gentle with it
