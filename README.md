@@ -30,8 +30,10 @@ Click `Open System Preferences`. Click the lock icon and enter your password. Cl
 - The loading maybe caused because your computer is lagging or the programm is running in the background but there is no text field to input the keys into. Please wait for a while or quit the app and reopen. 
 - Another cause of the problem is trying to change the keys while the controller is running. Close the app and reopen it. When changing keys remember to stop the controller first.
 
-
-## Notes when testing the physical prototype
+## Physical Prototype
+### Pictures
+You can find the pictures of our prototype [here](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/tree/main/Prototype%20pictures)
+### Notes when testing the physical prototype
 - The prototype is fragile, please be gentle with it
 - Even though the usage of feet to press the buttons is stated, please do not use your feet to test the prototype as it may break the prototype
 
@@ -40,4 +42,3 @@ Click `Open System Preferences`. Click the lock icon and enter your password. Cl
 - [pyserial](https://github.com/pyserial/pyserial)
 - [pyautogui](https://github.com/asweigart/pyautogui)
 - [tkinter](https://docs.python.org/3/library/tk.html)
-
