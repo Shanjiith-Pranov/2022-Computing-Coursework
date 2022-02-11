@@ -4,7 +4,6 @@ int button2 = 12; // A
 int button3 = 11; // S
 int button4 = 10; // D
 int button5 = 9;  // Esc
-String enable;
 
 void setup()
 {

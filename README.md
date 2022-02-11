@@ -16,8 +16,8 @@ python<your python version> -m pip install tk
 ## Running the code
 Downlad the zip the file from the [releases](https://github.com/Shanjiith-Pranov/2022-Computing-Coursework/releases/new). Unzip the file and open `main.py` in your choice of editor(IDLE for teachers testing this code). Run the code.
 ## Testing the program
-- First, connect the Arduino to the machine you are running the code on.
-- Next, press `Sync the Device`
+- First, connect the controller to the machine you are running the code on.
+- Next, press `Sync the Device`. The programm will search for a connected controller for 10 seconds.
 - If the controller is not found, follow the instructions shown
 - After the controller is found, press the `Run arduino` button. The button should turn blue.
 - If you would like to remap a key, press the the `Run arduino` button again and wait for it to turn grey. Now, change the key for the respective button and hit `Confirm selection`.
