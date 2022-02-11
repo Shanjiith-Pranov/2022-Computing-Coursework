@@ -106,13 +106,13 @@ def emulator():
                     if k in placeholder:
                         pass
                     else:
-                        if j == "macro_1":
+                        if k == "macro_1":
                             macro = open("macros.txt", "r") #opening arduino.txt to fetch state
                             macroText = macro.readline()
                             for l in macroText:
                                 keyDown(l) #fetching data from arduino.txt
                             macro.close()
-                        elif j == "macro_2":
+                        elif k == "macro_2":
                             macro = open("macros.txt", "r") #opening arduino.txt to fetch state
                             _ = macro.readline()
                             macroText = macro.readline()
