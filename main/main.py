@@ -64,8 +64,6 @@ def StartStop(): #Shanjiith + Darius
         startstop = 0
     toggle.close()    
 
-import UI
-
 def emulator():
     global selectedKeys,enabledKeys,placeholder,newdata,arduino
     arduinoValue = open("arduino.txt", "r") #opening arduino.txt to fetch state
@@ -93,15 +91,41 @@ def emulator():
                     if j in newdata:
                         pass
                     else:
-                        keyUp(j) #keyup if no input detected + if placeholder has a previous input
+                        if j == "macro_1":
+                            macro = open("macros.txt", "r") #opening arduino.txt to fetch state
+                            keyUp(macro.readline()) #fetching data from arduino.txt
+                            macro.close()
+                        elif j == "macro_2":
+                            macro = open("macros.txt", "r") #opening arduino.txt to fetch state
+                            _ = macro.readline()
+                            keyUp(macro.readline()) #fetching data from arduino.txt
+                            macro.close()
+                        else:
+                            keyUp(j) #keyup if no input detected + if placeholder has a previous input
                 for k in newdata:
                     if k in placeholder:
                         pass
                     else:
-                        keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
+                        if j == "macro_1":
+                            macro = open("macros.txt", "r") #opening arduino.txt to fetch state
+                            macroText = macro.readline()
+                            for l in macroText:
+                                keyDown(l) #fetching data from arduino.txt
+                            macro.close()
+                        elif j == "macro_2":
+                            macro = open("macros.txt", "r") #opening arduino.txt to fetch state
+                            _ = macro.readline()
+                            macroText = macro.readline()
+                            for l in macroText:
+                                keyDown(l) #fetching data from arduino.txt
+                            macro.close()
+                        else:
+                            keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
                 placeholder = newdata
         else:
             toggle.close()
             # break
     else:
         pass
+
+loadUI()
