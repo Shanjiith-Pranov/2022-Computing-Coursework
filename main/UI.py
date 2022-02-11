@@ -92,7 +92,7 @@ def getKeyInput(): # Updates the selected keys when Confirm Selection is pressed
     data.close()
     # Updates the label every time Confirm Selection is pressed
     showChoices.config(text=selectedKeys) # Shows all the currently selected keys
-    showChoices.grid(row=7,column=1) # TEST THIS BECAUSE I'M NOT SURE IF THIS SHOULD BE HERE
+    showChoices.grid(row=7,column=1)
 
 ## Hern Yee/ Dropdown windows
 button1 = tkinter.StringVar() # Change to String
