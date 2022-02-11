@@ -86,35 +86,35 @@ def emulator():
             if placeholder != newdata: # If the placeholder, the keys that were previously pressed, is different from newdata -> Means that the keys pressed has changed.
                 for j in placeholder:
                     if j in newdata:
-                        pass
+                        pass # If the key is already pressed and there is an input to press it, there's no need to do anything
                     else:
                         if j == "macro_1" or j == "macro_2":
-                            pass
+                            pass # If the key is a macro, don't do anything
                         else:
-                            keyUp(j) #keyup if no input detected + if placeholder has a previous input
+                            keyUp(j) # If the button is not pressed anymore, lift the key
                 for k in newdata:
                     if k in placeholder:
-                        pass
+                        pass # If the the key is already lifted and there is an input to lift it, there's no need to do it
                     else:
-                        if k == "macro_1":
-                            macro = open("macros.txt", "r") #opening arduino.txt to fetch state
-                            macroText = macro.readline()
+                        if k == "macro_1": 
+                            macro = open("macros.txt", "r") 
+                            macroText = macro.readline() 
                             macroText = macroText[:-2]
-                            for l in macroText:
-                                keyDown(l) #fetching data from arduino.txt
-                                keyUp(l) #fetching data from arduino.txt
+                            for l in macroText: # Press each key in the line and lift it after.
+                                keyDown(l) 
+                                keyUp(l) 
                             macro.close()
                         elif k == "macro_2":
-                            macro = open("macros.txt", "r") #opening arduino.txt to fetch state
+                            macro = open("macros.txt", "r")
                             _ = macro.readline()
-                            macroText = macro.readline()
-                            for l in macroText:
-                                keyDown(l) #fetching data from arduino.txt
-                                keyUp(l) #fetching data from arduino.txt
+                            macroText = macro.readline() # Read the second line in the macros.txt
+                            for l in macroText: # Press each key in the line and lift it after.
+                                keyDown(l) 
+                                keyUp(l)
                             macro.close()
                         else:
-                            keyDown(k) #keyup ssdddddif no input detected + if placeholder has a previous input
-                placeholder = newdata
+                            keyDown(k) # If the button is pressed, press the key
+                placeholder = newdata # Save the current recieved data into placeholder -> Placeholder will be 1 loop behing the recieved data and is used to check the previously pressed keys
         else:
             toggle.close()
             # break
